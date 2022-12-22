@@ -1,7 +1,7 @@
-package model;
+package animal.model;
 
 
-import model.categories.Animal;
+import animal.model.categories.Animal;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
