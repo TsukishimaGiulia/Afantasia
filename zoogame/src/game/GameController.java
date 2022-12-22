@@ -1,8 +1,8 @@
 package game;
 
-import pawtropolis.game.console.InputController;
-import pawtropolis.game.domain.Player;
-import pawtropolis.map.domain.Room;
+import game.console.InputController;
+import game.domain.Player;
+import map.domain.Room;
 
 public class GameController {
 
