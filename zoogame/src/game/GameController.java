@@ -1,8 +1,8 @@
 package game;
 
 import game.console.InputController;
-import game.domain.Player;
-import map.domain.Room;
+import game.model.Player;
+import map.model.Room;
 
 public class GameController {
 

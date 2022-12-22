@@ -1,7 +1,7 @@
-package map.domain;
+package map.model;
 
 import animal.model.categories.Animal;
-import game.domain.Item;
+import game.model.Item;
 
 import java.util.List;
 import java.util.Map;
