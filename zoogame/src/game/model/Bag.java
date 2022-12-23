@@ -32,9 +32,14 @@ public class Bag {
 				'}';
 	}
 
-	public void addItem(Item item){};
+	public void addItem(Item item){
+			items.add(item);
+	};
 
 	public Item dropItem(Item item){
+		if(items.remove(item)) {
+			return item;
+		}
 		return null;
 	};
 }

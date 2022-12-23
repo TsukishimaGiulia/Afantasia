@@ -3,6 +3,7 @@ package map.model;
 import animal.model.categories.Animal;
 import game.model.Item;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -52,8 +53,20 @@ public class Room {
 		this.adjoiningRooms = adjoiningRooms;
 	}
 
-	public void addItem(Item item){};
+	public void addItem(Item item){
+		items.add(item);
+	};
 	public Item removeItem(Item item){
+		if(items.remove(item)) {
+			return item;
+		}
 		return null;
 	};
+
+	@Override
+	public String toString() {
+		return "Room named " + name + ".\n" +
+				(items == null ? "There are no items" : "Items in the room: " + items) + ".\n" +
+				(animals == null ? "There are no animals" : "Animals in the room: " + animals) + ".";
+	}
 }
