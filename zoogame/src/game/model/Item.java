@@ -35,4 +35,12 @@ public class Item {
 	public void setRequiredSlots(int requiredSlots) {
 		this.requiredSlots = requiredSlots;
 	}
+
+	@Override
+	public String toString() {
+		return "Item: " +
+				"name= " + name + " " +
+				", description= " + description + " " +
+				", requiredSlots=" + requiredSlots + ".";
+	}
 }

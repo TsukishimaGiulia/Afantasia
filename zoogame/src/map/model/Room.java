@@ -3,6 +3,7 @@ package map.model;
 import animal.model.categories.Animal;
 import game.model.Item;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,13 +11,30 @@ import java.util.Map;
 public class Room {
 
 	private String name;
-	private List<Item> items;
-	private List<Animal> animals;
+	private List<Item> items = new ArrayList<>();
+	private List<Animal> animals = new ArrayList<>();
 	private Map<String,Room> adjoiningRooms;
 
 	public Room(String name, List<Item> items, List<Animal> animals, Map<String, Room> adjoiningRooms) {
 		this.name = name;
 		this.items = items;
+		this.animals = animals;
+		this.adjoiningRooms = adjoiningRooms;
+	}
+
+	public Room(String name, List<Item> items, Map<String, Room> adjoiningRooms) {
+		this.name = name;
+		this.items = items;
+		this.adjoiningRooms = adjoiningRooms;
+	}
+
+	public Room(String name, Map<String, Room> adjoiningRooms) {
+		this.name = name;
+		this.adjoiningRooms = adjoiningRooms;
+	}
+
+	public Room(String name, Map<String, Room> adjoiningRooms, List<Animal> animals) {
+		this.name = name;
 		this.animals = animals;
 		this.adjoiningRooms = adjoiningRooms;
 	}
@@ -31,10 +49,6 @@ public class Room {
 
 	public List<Item> getItems() {
 		return items;
-	}
-
-	public void setItems(List<Item> items) {
-		this.items = items;
 	}
 
 	public List<Animal> getAnimals() {

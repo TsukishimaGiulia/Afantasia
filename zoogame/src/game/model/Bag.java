@@ -1,45 +1,36 @@
 package game.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Bag {
 
-	private List<Item> items;
-	private int totalBagSlots;
-
-	public Bag(List<Item> items, int totalBagSlots) {
-		this.items = items;
-		this.totalBagSlots = totalBagSlots;
-	}
+	private List<Item> items = new ArrayList<>();
+	private final int totalBagSlots = 40;
 
 	public List<Item> getItems() {
 		return items;
 	}
 
-	public void setItems(List<Item> items) {
-		this.items = items;
-	}
-
-	public int getTotalBagSlots() {
-		return totalBagSlots;
-	}
-
 	@Override
 	public String toString() {
-		return "Bag{" +
-				"items=" + items +
-				", totalBagSlots=" + totalBagSlots +
-				'}';
+		return "Your bag" + "\n" +
+				(items == null ? "There are no items" : "Your items: " + items) + ".\n" +
+				"Available slots: " + availableSlots() + ".";
 	}
 
 	public void addItem(Item item){
 			items.add(item);
 	};
-
 	public Item dropItem(Item item){
 		if(items.remove(item)) {
 			return item;
 		}
 		return null;
 	};
+
+	public int availableSlots (){
+		int sum = items.stream().mapToInt(Item::getRequiredSlots).sum();
+		return totalBagSlots - sum;
+	}
 }
