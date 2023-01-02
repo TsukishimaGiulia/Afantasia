@@ -22,14 +22,23 @@ public class GameController {
 		Room currentRoom = entry;
 		boolean gameEnded = false;
 
-		System.out.println("Welcome to Afantasia, our fantastic world without fantasy!\nYou are now in the entry room and you have to find the exit.\nIn your path you will find animals that can give you suggestions on what to do, and objects to collect.\nYou can type your commands using the keyboard: write help for a list of possible comamnds.");
+		System.out.println("Welcome to Afantasia, our fantastic world without fantasy!\n" +
+				"You are now in the entry room and you have to find the exit.\n" +
+				"In your path you will find animals that can give you suggestions on what to do, and objects to collect.\n" +
+				"You can type your commands using the keyboard: write help for a list of possible commands.\n");
 
 		while(!gameEnded) {
 			String output = "";
 			String input;
 //			System.out.println("Where are you going to go?");
+
+			System.out.println(currentRoom.toString());
 			System.out.print(">");
 			input = InputController.readString();
+			String itemName;
+			Optional<Item> itemOptional;
+
+
 			try {
 				switch(input.toLowerCase().split(" ")[0]){
 
@@ -46,39 +55,45 @@ public class GameController {
 						break;
 					case "bag": output = player.getBag().toString();
 						break;
-					case "get":
-									String itemName = input.split(" ")[1];
-
-									Optional<Item> itemOptional = currentRoom.getItems().stream().filter(i -> i.getName().equalsIgnoreCase(itemName)).findFirst();
-									if(itemOptional.isPresent()){
-										currentRoom.removeItem(itemOptional.get());
-										player.getBag().addItem(itemOptional.get());
-										System.out.println("You have put " + itemName + " into your bag.");
-									}else {
-										System.out.println("There isn't any " + itemName + " in this room.");
-									}
-
+					case "get": itemName = input.split(" ")[1];
+								itemOptional = currentRoom.getItems().stream().filter(i -> i.getName().equalsIgnoreCase(itemName)).findFirst();
+								if(itemOptional.isPresent()){
+									currentRoom.removeItem(itemOptional.get());
+									player.getBag().addItem(itemOptional.get());
+									output = "You have put " + itemName + " into your bag.";
+								}else {
+									output = "There isn't any " + itemName + " in this room.";
+								}
 						break;
-					case "drop":
+					case "drop": itemName = input.split(" ")[1];
+						itemOptional = player.getBag().getItems().stream().filter(i -> i.getName().equalsIgnoreCase(itemName)).findFirst();
+						if(itemOptional.isPresent()){
+							player.getBag().dropItem(itemOptional.get());
+							currentRoom.addItem(itemOptional.get());
+							output = "You have dropped " + itemName + ".";
+						}else {
+							output = "There isn't any " + itemName + " in your bag.";
+						}
 						break;
 					case "help":	// elenca i possibili comandi
+						output = "- go: lets you move through rooms, specifying the direction (north, south, east, west) as a parameter (ex: go north);\n" +
+								"- look: gives you the description of the room, including items and animals present;\n" +
+								"- bag: gives you the list of items in your bag;\n" +
+								"- get: lets you pick up an item selected as a parameter from the room and put it in your bag (ex: get itemName);\n" +
+								"- drop: lets you drop an item selected as a parameter from your bag and leave it in the current room (ex: drop itemName);\n" +
+								"- exit: ends the game.";
 						break;
 					case "exit":
 						gameEnded = true;
 						break;
 					default:
-						output = "Command not valid, type 'help' to see the command list";
+						output = "Command not valid, type 'help' to see the command list.";
 						break;
-
-
 				}
 			}catch(IndexOutOfBoundsException e){
-				System.out.println("You must specify a parameter for the command.");
+				output = "You must specify a parameter for the command " + input + ".";
 			}
 
-//			if (input.equals("exit")) {
-//				gameEnded = true;
-//			}
 			System.out.println(output);
 		}
 	}
