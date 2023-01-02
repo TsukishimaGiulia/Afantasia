@@ -6,6 +6,7 @@ import game.GameController;
 import game.model.Bag;
 import game.model.Item;
 import game.model.Player;
+import map.model.Door;
 import map.model.Room;
 
 import java.time.LocalDate;
@@ -18,22 +19,25 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Map<String, Room> mentry = new HashMap<>();
-        Map<String, Room> m1 = new HashMap<>();
-        Map<String, Room> m5 = new HashMap<>();
+        Map<String, Door> dentry = new HashMap<>();
+        Map<String, Door> d1 = new HashMap<>();
+        Map<String, Door> d5 = new HashMap<>();
 
         List<Animal> animals1 = new ArrayList<>();
         Lion leone = new Lion("Simba", "pizza", 10, LocalDate.now(), 30.80, 50.30, 15.00);
         animals1.add(leone);
 
-        Room entry = new Room("entry", mentry, animals1);
-        Room r1 = new Room("1", m1);
-        Room r5 = new Room("5", m5);
+        Room entry = new Room("entry", dentry, animals1);
+        Room r1 = new Room("1", d1);
+        Room r5 = new Room("5", d5);
 
-        mentry.put("north", r1);
-        m1.put("north", r5);
-        m1.put("south", entry);
-        m5.put("south", r1);
+        Door door1 = new Door(true,entry,r1);
+        Door door2 = new Door(true, r1,r5);
+
+        dentry.put("north", door1);
+        d1.put("north", door2);
+        d1.put("south", door1);
+        d5.put("south", door2);
 
         Bag bag = new Bag();
 
@@ -48,5 +52,6 @@ public class Main {
         GameController gc = new GameController(entry, player);
 
         gc.runGame();
+
     }
 }

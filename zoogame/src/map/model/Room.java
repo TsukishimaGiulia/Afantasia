@@ -4,7 +4,6 @@ import animal.model.categories.Animal;
 import game.model.Item;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,30 +12,30 @@ public class Room {
 	private String name;
 	private List<Item> items = new ArrayList<>();
 	private List<Animal> animals = new ArrayList<>();
-	private Map<String,Room> adjoiningRooms;
+	private Map<String, Door> doors;
 
-	public Room(String name, List<Item> items, List<Animal> animals, Map<String, Room> adjoiningRooms) {
+	public Room(String name, List<Item> items, List<Animal> animals, Map<String, Door> doors) {
 		this.name = name;
 		this.items = items;
 		this.animals = animals;
-		this.adjoiningRooms = adjoiningRooms;
+		this.doors = doors;
 	}
 
-	public Room(String name, List<Item> items, Map<String, Room> adjoiningRooms) {
+	public Room(String name, List<Item> items, Map<String, Door> doors) {
 		this.name = name;
 		this.items = items;
-		this.adjoiningRooms = adjoiningRooms;
+		this.doors = doors;
 	}
 
-	public Room(String name, Map<String, Room> adjoiningRooms) {
+	public Room(String name, Map<String, Door> doors) {
 		this.name = name;
-		this.adjoiningRooms = adjoiningRooms;
+		this.doors = doors;
 	}
 
-	public Room(String name, Map<String, Room> adjoiningRooms, List<Animal> animals) {
+	public Room(String name, Map<String, Door> doors, List<Animal> animals) {
 		this.name = name;
 		this.animals = animals;
-		this.adjoiningRooms = adjoiningRooms;
+		this.doors = doors;
 	}
 
 	public String getName() {
@@ -59,12 +58,12 @@ public class Room {
 		this.animals = animals;
 	}
 
-	public Map<String, Room> getAdjoiningRooms() {
-		return adjoiningRooms;
+	public Map<String, Door> getDoors() {
+		return doors;
 	}
 
-	public void setAdjoiningRooms(Map<String, Room> adjoiningRooms) {
-		this.adjoiningRooms = adjoiningRooms;
+	public void setDoors(Map<String, Door> doors) {
+		this.doors = doors;
 	}
 
 	public void addItem(Item item){
@@ -79,8 +78,13 @@ public class Room {
 
 	@Override
 	public String toString() {
-		return "Room named " + name + ".\n" +
+		String output = "Room named " + name + ".\n" +
 				(items == null ? "There are no items" : "Items in the room: " + items) + ".\n" +
-				(animals == null ? "There are no animals" : "Animals in the room: " + animals) + ".";
+				(animals == null ? "There are no animals" : "Animals in the room: " + animals) + ".\n" +
+				"List of doors: \n";
+		for (String key : doors.keySet()) {
+			output += "- " + key.toString() + " door, leading to " + doors.get(key).nextRoom(this).getName();
+		}
+		return output;
 	}
 }
