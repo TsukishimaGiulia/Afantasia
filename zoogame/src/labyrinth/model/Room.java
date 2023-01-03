@@ -14,6 +14,10 @@ public class Room {
 	private List<Animal> animals = new ArrayList<>();
 	private Map<String, Door> doors;
 
+	public Room(String name) {
+		this.name = name;
+	}
+
 	public Room(String name, List<Item> items, List<Animal> animals, Map<String, Door> doors) {
 		this.name = name;
 		this.items = items;
@@ -82,9 +86,9 @@ public class Room {
 				(items == null || items.isEmpty() ?  "There are no items" : "Items in the room: " + items) + ".\n" +
 				(animals == null || animals.isEmpty() ? "There are no animals" : "Animals in the room: " + animals) + ".\n" +
 				"List of doors: \n";
-		for (String key : doors.keySet()) {
-			output += "- " + key.toString() + " door, leading to " + doors.get(key).nextRoom(this).getName();
-		}
+//		for (String key : doors.keySet()) {
+//			output += "- " + key.toString() + " door, leading to " + doors.get(key).nextRoom(this).getName();
+//		}
 		return output;
 	}
 }

@@ -51,7 +51,9 @@ public class Main {
 
         GameController gc = new GameController(entry, player);
 
-        gc.runGame();
+//        gc.runGame();
+
+        gc.generateLabyrinth(22);
 
     }
 }

@@ -10,5 +10,9 @@ public class Eagle extends WingedAnimal {
         super(name, favoriteFood, age, dateOfEntry, weight, height, wingspan);
     }
 
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName() + " " + this.getName();
+    }
 
 }
