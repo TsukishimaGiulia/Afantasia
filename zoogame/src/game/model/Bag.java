@@ -15,7 +15,7 @@ public class Bag {
 	@Override
 	public String toString() {
 		return "Your bag" + "\n" +
-				(items == null ? "There are no items" : "Your items: " + items) + ".\n" +
+				(items == null || items.isEmpty() ? "There are no items" : "Your items: " + items) + ".\n" +
 				"Available slots: " + availableSlots() + ".";
 	}
 

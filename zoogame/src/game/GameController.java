@@ -51,7 +51,7 @@ public class GameController {
 						}
 						else{
 							currentRoom = room;
-							output = "You just stepped into " + currentRoom.toString();
+							output = "You have just stepped into " + currentRoom.toString();
 						}
 						break;
 					case "look":

@@ -79,8 +79,8 @@ public class Room {
 	@Override
 	public String toString() {
 		String output = "Room named " + name + ".\n" +
-				(items == null ? "There are no items" : "Items in the room: " + items) + ".\n" +
-				(animals == null ? "There are no animals" : "Animals in the room: " + animals) + ".\n" +
+				(items == null || items.isEmpty() ?  "There are no items" : "Items in the room: " + items) + ".\n" +
+				(animals == null || animals.isEmpty() ? "There are no animals" : "Animals in the room: " + animals) + ".\n" +
 				"List of doors: \n";
 		for (String key : doors.keySet()) {
 			output += "- " + key.toString() + " door, leading to " + doors.get(key).nextRoom(this).getName();
