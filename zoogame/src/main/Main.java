@@ -6,8 +6,8 @@ import game.GameController;
 import game.model.Bag;
 import game.model.Item;
 import game.model.Player;
-import map.model.Door;
-import map.model.Room;
+import labyrinth.model.Door;
+import labyrinth.model.Room;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

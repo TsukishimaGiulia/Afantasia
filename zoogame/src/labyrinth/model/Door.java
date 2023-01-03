@@ -1,4 +1,4 @@
-package map.model;
+package labyrinth.model;
 
 public class Door {
     private boolean open;

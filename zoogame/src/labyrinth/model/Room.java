@@ -1,4 +1,4 @@
-package map.model;
+package labyrinth.model;
 
 import animal.model.categories.Animal;
 import game.model.Item;

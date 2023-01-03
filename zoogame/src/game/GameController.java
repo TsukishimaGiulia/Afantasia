@@ -3,11 +3,11 @@ package game;
 import game.console.InputController;
 import game.model.Item;
 import game.model.Player;
-import map.model.Door;
-import map.model.Room;
+import labyrinth.model.Door;
+import labyrinth.model.Labyrinth;
+import labyrinth.model.Room;
 
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 public class GameController {
 
@@ -113,5 +113,10 @@ public class GameController {
 		}
 		Room requestedRoom = requestedDoor.nextRoom(currentRoom);
 		return requestedRoom;
+	}
+
+	private Labyrinth generateLabyrinth(){
+
+		return null;
 	}
 }
