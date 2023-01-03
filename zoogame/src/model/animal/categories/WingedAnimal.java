@@ -1,4 +1,4 @@
-package animal.model.categories;
+package model.animal.categories;
 
 import java.time.LocalDate;
 

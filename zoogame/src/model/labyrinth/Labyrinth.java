@@ -1,4 +1,4 @@
-package labyrinth.model;
+package model.labyrinth;
 
 import java.util.List;
 

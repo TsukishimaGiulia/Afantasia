@@ -1,15 +1,15 @@
 package game;
 
-import animal.model.Zoo;
-import animal.model.categories.Animal;
+import model.animal.Zoo;
 import game.console.InputController;
-import game.model.Item;
-import game.model.Player;
-import labyrinth.model.Door;
-import labyrinth.model.Labyrinth;
-import labyrinth.model.Room;
+import model.item.Item;
+import model.game.Player;
+import model.item.Items;
+import model.labyrinth.Door;
+import model.labyrinth.Labyrinth;
+import model.labyrinth.Room;
+import model.animal.categories.Animal;
 
-import java.io.Console;
 import java.util.*;
 
 public class GameController {
@@ -122,6 +122,8 @@ public class GameController {
 	public Labyrinth generateLabyrinth(int nRooms){
 //		double random = Math.random()*nRooms;
 		Zoo zoo = new Zoo();
+		Items items = new Items();
+		Random random = new Random();
 
 		List<Room> rooms = new ArrayList<>(nRooms);
 
@@ -130,36 +132,40 @@ public class GameController {
 			rooms.add(r);
 		}
 
-		// DECIDIAMO QUALI ANIMALI ANDRANNO NEL GIOCO (DA DISTRIBUIRE NELLE STANZE)
+		// DECIDIAMO QUANTI E QUALI ANIMALI ANDRANNO NEL GIOCO (DA DISTRIBUIRE NELLE STANZE)
 		// Otteniamo l'intera lista di animali dello zoo
 		List<Animal> animals = zoo.getAllAnimals();
 
 		// Dimensioniamo la quantità di animali in base al numero delle stanze
-		int nAnimals = nRooms/10;
+		int nAnimals = nRooms/8;
 
-		// Creiamo la lista con gli animali selezionati per andare nel gioco
-		List<Animal> animalsInTheGame = new ArrayList<>(nAnimals);
-		Random random = new Random();
+		// Selezioniamo gli animali randomicamente e li inseriamo in stanze casuali
 		for(int i = 1; i <= nAnimals; i++){
 			int randomIndex = random.nextInt(animals.size());
 			Animal selectedAnimal = animals.get(randomIndex);
-			animalsInTheGame.add(selectedAnimal);
+
+			randomIndex = random.nextInt(nRooms);
+			Room selectedRoom = rooms.get(randomIndex);
+
+			selectedRoom.getAnimals().add(selectedAnimal);
 			animals.remove(selectedAnimal);
 		}
 
-		// Stampa di prova
-		System.out.println(animalsInTheGame);
+		// DECIDIAMO QUANTI E QUALI OGGETTI ANDRANNO NEL GIOCO (DA DISTRIBUIRE NELLE STANZE)
+		int nItems = nRooms/4;
+		for(int i = 1; i <= nItems; i++){
+			int randomIndex = random.nextInt(items.getItems().size());
+			Item selectedItem = items.getItems().get(randomIndex);
 
-		// Aggiungiamo gli animali alle stanze
-		for(Animal a : animalsInTheGame){
-			int randomIndex = random.nextInt(nRooms);
-			//scegliamo la stanza a cui aggiungere l'animale
+			randomIndex = random.nextInt(nRooms);
 			Room selectedRoom = rooms.get(randomIndex);
-			selectedRoom.getAnimals().add(a);
+
+			selectedRoom.getItems().add(selectedItem);
+			items.getItems().remove(selectedItem);
 		}
 
-		System.out.println(rooms);
 
+		System.out.println(rooms);
 		return new Labyrinth(rooms);
 	}
 }

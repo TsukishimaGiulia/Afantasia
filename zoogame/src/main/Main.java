@@ -1,13 +1,13 @@
 package main;
 
-import animal.model.Lion;
-import animal.model.categories.Animal;
+import model.animal.Lion;
+import model.animal.categories.Animal;
 import game.GameController;
-import game.model.Bag;
-import game.model.Item;
-import game.model.Player;
-import labyrinth.model.Door;
-import labyrinth.model.Room;
+import model.game.Bag;
+import model.item.Item;
+import model.game.Player;
+import model.labyrinth.Door;
+import model.labyrinth.Room;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -53,7 +53,7 @@ public class Main {
 
 //        gc.runGame();
 
-        gc.generateLabyrinth(22);
+        gc.generateLabyrinth(18);
 
     }
 }

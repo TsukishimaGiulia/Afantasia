@@ -1,7 +1,7 @@
-package animal.model;
+package model.animal;
 
 
-import animal.model.categories.Animal;
+import model.animal.categories.Animal;
 
 import java.time.LocalDate;
 import java.util.*;

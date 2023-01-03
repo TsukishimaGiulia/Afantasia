@@ -1,7 +1,7 @@
-package labyrinth.model;
+package model.labyrinth;
 
-import animal.model.categories.Animal;
-import game.model.Item;
+import model.animal.categories.Animal;
+import model.item.Item;
 
 import java.util.ArrayList;
 import java.util.List;
