@@ -115,6 +115,7 @@ public class GameController {
 		return requestedRoom;
 	}
 
+	// prevediamo di utilizzare il seguente metodo solo dentro RunGame(), quindi lo mettiamo private
 	private Labyrinth generateLabyrinth(){
 
 		return null;
