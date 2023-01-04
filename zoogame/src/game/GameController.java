@@ -108,7 +108,7 @@ public class GameController {
 		}
 	}
 
-	// prevediamo di utilizzare il seguente metodo solo dentro RunGame(), quindi lo mettiamo private
+	// Prevediamo di utilizzare il seguente metodo solo dentro RunGame(), quindi lo mettiamo private
 	private Room goToNextRoom(Room currentRoom, String direction){
 		Door requestedDoor = currentRoom.getDoors().get(direction);
 		if(requestedDoor == null) {
@@ -118,18 +118,38 @@ public class GameController {
 		return requestedRoom;
 	}
 
-	// prevediamo di utilizzare il seguente metodo solo dentro RunGame(), quindi lo mettiamo private
+	// Prevediamo di utilizzare il seguente metodo solo dentro RunGame(), quindi lo mettiamo private
 	public Labyrinth generateLabyrinth(int nRooms){
 //		double random = Math.random()*nRooms;
 		Zoo zoo = new Zoo();
 		Items items = new Items();
 		Random random = new Random();
+		int randomIndex;
 
 		List<Room> rooms = new ArrayList<>(nRooms);
 
-		for(int i = 1; i<= nRooms; i++){
-			Room r = new Room("room " + i);
-			rooms.add(r);
+		// Questa lista conterrà alla posizione i-esima il numero di porte per la stanza alla posizione i-esima della lista rooms
+		//List<Integer> nDoorForRoom = new ArrayList<>(nRooms);
+
+		//CREAZIONE E COLLEGAMENTO DELLE STANZE
+		Room room = new Room("");
+		rooms.add(room);
+
+		for(int i = 0; i<nRooms; i++){
+			Room r = rooms.get(i);
+			randomIndex = random.nextInt(4);
+			//nDoorForRoom.add(randomIndex);
+			int doorsLeft = randomIndex - r.getDoors().size();
+			Room room1;
+
+			for (int j = 0; j<=doorsLeft; j++){
+				room1 = new Room("");
+				Door door = new Door(true, r, room1 ); // Abbiamo associato alla porta le 2 stanze
+				String direction = calculateDirection(r.getDoors()); //Estraiamo una direzione a caso fra quelle non occupate da port
+				r.getDoors().put(direction, door); //Aggiungiamo la porta alla mappa di porte della prima stanza creata, in corrispondenza della direzione estratta
+				room1.getDoors().put(getOppositeDirection(direction), door);//Aggiungiamo la porta alla mappa di porte della seconda stanza, in corrispondenza della direzione opposta alla prima
+				rooms.add(room1);
+			}
 		}
 
 		// DECIDIAMO QUANTI E QUALI ANIMALI ANDRANNO NEL GIOCO (DA DISTRIBUIRE NELLE STANZE)
@@ -141,7 +161,7 @@ public class GameController {
 
 		// Selezioniamo gli animali randomicamente e li inseriamo in stanze casuali
 		for(int i = 1; i <= nAnimals; i++){
-			int randomIndex = random.nextInt(animals.size());
+			randomIndex = random.nextInt(animals.size());
 			Animal selectedAnimal = animals.get(randomIndex);
 
 			randomIndex = random.nextInt(nRooms);
@@ -154,7 +174,7 @@ public class GameController {
 		// DECIDIAMO QUANTI E QUALI OGGETTI ANDRANNO NEL GIOCO (DA DISTRIBUIRE NELLE STANZE)
 		int nItems = nRooms/4;
 		for(int i = 1; i <= nItems; i++){
-			int randomIndex = random.nextInt(items.getItems().size());
+			randomIndex = random.nextInt(items.getItems().size());
 			Item selectedItem = items.getItems().get(randomIndex);
 
 			randomIndex = random.nextInt(nRooms);
@@ -164,8 +184,33 @@ public class GameController {
 			items.getItems().remove(selectedItem);
 		}
 
-
 		System.out.println(rooms);
+		System.out.println(rooms.size());
 		return new Labyrinth(rooms);
+	}
+
+	private String calculateDirection(Map<String, Door> doors){
+		List<String> directions = new ArrayList<>();
+		directions.add("north");
+		directions.add("south");
+		directions.add("west");
+		directions.add("east");
+		directions.removeAll(doors.keySet());
+		return directions.get(new Random().nextInt(directions.size()));
+	}
+
+	private String getOppositeDirection(String direction){
+		switch(direction){
+			case "north":
+				return "south";
+			case "south":
+				return "north";
+			case "west":
+				return "east";
+			case "east":
+				return "west";
+			default:
+				throw new RuntimeException("direction not managed");
+		}
 	}
 }

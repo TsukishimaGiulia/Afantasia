@@ -4,6 +4,7 @@ import model.animal.categories.Animal;
 import model.item.Item;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -12,7 +13,7 @@ public class Room {
 	private String name;
 	private List<Item> items = new ArrayList<>();
 	private List<Animal> animals = new ArrayList<>();
-	private Map<String, Door> doors;
+	private Map<String, Door> doors = new HashMap<>();
 
 	public Room(String name) {
 		this.name = name;
@@ -86,9 +87,9 @@ public class Room {
 				(items == null || items.isEmpty() ?  "There are no items" : "Items in the room: " + items) + ".\n" +
 				(animals == null || animals.isEmpty() ? "There are no animals" : "Animals in the room: " + animals) + ".\n" +
 				"List of doors: \n";
-//		for (String key : doors.keySet()) {
-//			output += "- " + key.toString() + " door, leading to " + doors.get(key).nextRoom(this).getName();
-//		}
+		for (String key : doors.keySet()) {
+			output += "- " + key.toString() + " door, leading to " + doors.get(key).nextRoom(this).getName();
+		}
 		return output;
 	}
 }
