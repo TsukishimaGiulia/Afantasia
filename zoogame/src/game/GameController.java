@@ -1,14 +1,11 @@
 package game;
 
-import model.animal.Zoo;
 import game.console.InputController;
 import model.item.Item;
 import model.game.Player;
-import model.item.Items;
 import model.labyrinth.Door;
 import model.labyrinth.Labyrinth;
 import model.labyrinth.Room;
-import model.animal.categories.Animal;
 
 import java.util.*;
 
@@ -117,7 +114,6 @@ public class GameController {
 		if(requestedDoor == null) {
 			return currentRoom;
 		}
-		Room requestedRoom = requestedDoor.nextRoom(currentRoom);
-		return requestedRoom;
+		return requestedDoor.nextRoom(currentRoom);
 	}
 }

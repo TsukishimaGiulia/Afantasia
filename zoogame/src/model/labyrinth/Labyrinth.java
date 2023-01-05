@@ -27,17 +27,13 @@ public class Labyrinth {
 
     private void generateLabyrinth(int nRooms) {
 //		double random = Math.random()*nRooms;
-        Items items = new Items();
-        Random random = new Random();
-        int randomIndex;
 
         Room room = new Room("Entry room");
         rooms.add(room);
 
         for (int i = 0; i < rooms.size(); i++) {
             Room r = rooms.get(i);
-            randomIndex = random.nextInt(3);
-            int doorsLeft = randomIndex + 1 - r.getDoors().size();
+            int doorsLeft = new Random().nextInt(3) + 1 - r.getDoors().size();
             Room room1;
 
             if (doorsLeft == 0 && i < nRooms) {
