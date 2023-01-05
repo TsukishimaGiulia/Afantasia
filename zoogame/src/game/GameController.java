@@ -132,18 +132,24 @@ public class GameController {
 		//List<Integer> nDoorForRoom = new ArrayList<>(nRooms);
 
 		//CREAZIONE E COLLEGAMENTO DELLE STANZE
-		Room room = new Room("");
+		Room room = new Room("Entry room");
 		rooms.add(room);
 
-		for(int i = 0; i<nRooms; i++){
+		for(int i = 0; i<rooms.size(); i++){
 			Room r = rooms.get(i);
-			randomIndex = random.nextInt(4);
+			randomIndex = random.nextInt(3);
 			//nDoorForRoom.add(randomIndex);
-			int doorsLeft = randomIndex - r.getDoors().size();
+			int doorsLeft = randomIndex + 1 - r.getDoors().size();
 			Room room1;
 
-			for (int j = 0; j<=doorsLeft; j++){
-				room1 = new Room("");
+			if(doorsLeft==0 && i<nRooms){
+				doorsLeft++;
+			}
+
+			for (int j = 0; j<doorsLeft; j++){
+				if(nRooms == rooms.size())
+					break;
+				room1 = new Room("room " + rooms.size());
 				Door door = new Door(true, r, room1 ); // Abbiamo associato alla porta le 2 stanze
 				String direction = calculateDirection(r.getDoors()); //Estraiamo una direzione a caso fra quelle non occupate da port
 				r.getDoors().put(direction, door); //Aggiungiamo la porta alla mappa di porte della prima stanza creata, in corrispondenza della direzione estratta
@@ -184,8 +190,11 @@ public class GameController {
 			items.getItems().remove(selectedItem);
 		}
 
-		System.out.println(rooms);
-		System.out.println(rooms.size());
+		for(Room r : rooms){
+			System.out.println(r.toString());
+		}
+//		System.out.println(rooms);
+		System.out.println("rooms size: "+rooms.size());
 		return new Labyrinth(rooms);
 	}
 
