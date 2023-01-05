@@ -14,35 +14,35 @@ import java.util.*;
 
 public class GameController {
 
-	private final Room entry;
+	private final Labyrinth labyrinth;
 	private final Player player;
 
-	public GameController(Room entry, Player player) {
-		this.entry = entry;
+	public GameController(Labyrinth labyrinth, Player player) {
+		this.labyrinth = labyrinth;
 		this.player = player;
 	}
 
 	public void runGame() {
-		Room currentRoom = entry;
+		Room currentRoom = labyrinth.getRooms().get(0);
 		boolean gameEnded = false;
 
 		System.out.println("Welcome to Afantasia, our fantastic world without fantasy!\n" +
-				"You are now in the entry room and you have to find the exit.\n" +
+				"In this game, you're lost in a labyrinth and you have to find the exit.\n" +
 				"In your path you will find animals that can give you suggestions on what to do, and objects to collect.\n" +
-				"You can type your commands using the keyboard: write help for a list of possible commands.\n\n" +
+				"Before you begin the game, please choose the number of rooms in the labyrinth: ");
+		System.out.print(">");
+		String input = InputController.readString();
+		System.out.println("Congratulations, a labyrinth with " + labyrinth.getRooms().size() + " rooms has been created ;-) .\n" +
+				"You are now in the entry room. You can type your commands using the keyboard: write help for a list of possible commands.\n\n" +
 				currentRoom.toString() + "\n");
-
 
 		while(!gameEnded) {
 			String output = "";
-			String input;
-//			System.out.println("Where are you going to go?");
 
 			System.out.print(">");
 			input = InputController.readString();
 			String itemName;
 			Optional<Item> itemOptional;
-
 
 			try {
 				switch(input.toLowerCase().split(" ")[0]){
@@ -55,6 +55,10 @@ public class GameController {
 						else{
 							currentRoom = room;
 							output = "You have just stepped into " + currentRoom.toString();
+							if(currentRoom.isExit()){
+								output = "Congratulations, you've found the exit!";
+								gameEnded = true;
+							}
 						}
 						break;
 					case "look":
@@ -108,7 +112,6 @@ public class GameController {
 		}
 	}
 
-	// Prevediamo di utilizzare il seguente metodo solo dentro RunGame(), quindi lo mettiamo private
 	private Room goToNextRoom(Room currentRoom, String direction){
 		Door requestedDoor = currentRoom.getDoors().get(direction);
 		if(requestedDoor == null) {
@@ -116,110 +119,5 @@ public class GameController {
 		}
 		Room requestedRoom = requestedDoor.nextRoom(currentRoom);
 		return requestedRoom;
-	}
-
-	// Prevediamo di utilizzare il seguente metodo solo dentro RunGame(), quindi lo mettiamo private
-	public Labyrinth generateLabyrinth(int nRooms){
-//		double random = Math.random()*nRooms;
-		Zoo zoo = new Zoo();
-		Items items = new Items();
-		Random random = new Random();
-		int randomIndex;
-
-		List<Room> rooms = new ArrayList<>(nRooms);
-
-		// Questa lista conterrà alla posizione i-esima il numero di porte per la stanza alla posizione i-esima della lista rooms
-		//List<Integer> nDoorForRoom = new ArrayList<>(nRooms);
-
-		//CREAZIONE E COLLEGAMENTO DELLE STANZE
-		Room room = new Room("Entry room");
-		rooms.add(room);
-
-		for(int i = 0; i<rooms.size(); i++){
-			Room r = rooms.get(i);
-			randomIndex = random.nextInt(3);
-			//nDoorForRoom.add(randomIndex);
-			int doorsLeft = randomIndex + 1 - r.getDoors().size();
-			Room room1;
-
-			if(doorsLeft==0 && i<nRooms){
-				doorsLeft++;
-			}
-
-			for (int j = 0; j<doorsLeft; j++){
-				if(nRooms == rooms.size())
-					break;
-				room1 = new Room("room " + rooms.size());
-				Door door = new Door(true, r, room1 ); // Abbiamo associato alla porta le 2 stanze
-				String direction = calculateDirection(r.getDoors()); //Estraiamo una direzione a caso fra quelle non occupate da port
-				r.getDoors().put(direction, door); //Aggiungiamo la porta alla mappa di porte della prima stanza creata, in corrispondenza della direzione estratta
-				room1.getDoors().put(getOppositeDirection(direction), door);//Aggiungiamo la porta alla mappa di porte della seconda stanza, in corrispondenza della direzione opposta alla prima
-				rooms.add(room1);
-			}
-		}
-
-		// DECIDIAMO QUANTI E QUALI ANIMALI ANDRANNO NEL GIOCO (DA DISTRIBUIRE NELLE STANZE)
-		// Otteniamo l'intera lista di animali dello zoo
-		List<Animal> animals = zoo.getAllAnimals();
-
-		// Dimensioniamo la quantità di animali in base al numero delle stanze
-		int nAnimals = nRooms/8;
-
-		// Selezioniamo gli animali randomicamente e li inseriamo in stanze casuali
-		for(int i = 1; i <= nAnimals; i++){
-			randomIndex = random.nextInt(animals.size());
-			Animal selectedAnimal = animals.get(randomIndex);
-
-			randomIndex = random.nextInt(nRooms);
-			Room selectedRoom = rooms.get(randomIndex);
-
-			selectedRoom.getAnimals().add(selectedAnimal);
-			animals.remove(selectedAnimal);
-		}
-
-		// DECIDIAMO QUANTI E QUALI OGGETTI ANDRANNO NEL GIOCO (DA DISTRIBUIRE NELLE STANZE)
-		int nItems = nRooms/4;
-		for(int i = 1; i <= nItems; i++){
-			randomIndex = random.nextInt(items.getItems().size());
-			Item selectedItem = items.getItems().get(randomIndex);
-
-			randomIndex = random.nextInt(nRooms);
-			Room selectedRoom = rooms.get(randomIndex);
-
-			selectedRoom.getItems().add(selectedItem);
-			items.getItems().remove(selectedItem);
-		}
-
-		for(Room r : rooms){
-			System.out.println(r.toString());
-		}
-//		System.out.println(rooms);
-		System.out.println("rooms size: "+rooms.size());
-		return new Labyrinth(rooms);
-	}
-
-	private String calculateDirection(Map<String, Door> doors){
-		List<String> directions = new ArrayList<>();
-		directions.add("north");
-		directions.add("south");
-		directions.add("west");
-		directions.add("east");
-		directions.removeAll(doors.keySet());
-		return directions.get(new Random().nextInt(directions.size()));
-	}
-
-	private String getOppositeDirection(String direction){
-		switch(direction){
-			case "north":
-				return "south";
-			case "south":
-				return "north";
-			case "west":
-				return "east";
-			case "east":
-				return "west";
-			default:
-				throw new RuntimeException("direction not managed");
-		}
 	}
 }

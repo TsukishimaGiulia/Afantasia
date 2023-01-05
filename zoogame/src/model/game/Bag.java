@@ -14,13 +14,6 @@ public class Bag {
 		return items;
 	}
 
-	@Override
-	public String toString() {
-		return "Your bag" + "\n" +
-				(items == null || items.isEmpty() ? "There are no items" : "Your items: " + items) + ".\n" +
-				"Available slots: " + availableSlots() + ".";
-	}
-
 	public void addItem(Item item){
 			items.add(item);
 	};
@@ -34,5 +27,12 @@ public class Bag {
 	public int availableSlots (){
 		int sum = items.stream().mapToInt(Item::getRequiredSlots).sum();
 		return totalBagSlots - sum;
+	}
+
+	@Override
+	public String toString() {
+		return "Your bag" + "\n" +
+				(items == null || items.isEmpty() ? "There are no items" : "Your items: " + items) + ".\n" +
+				"Available slots: " + availableSlots() + ".";
 	}
 }

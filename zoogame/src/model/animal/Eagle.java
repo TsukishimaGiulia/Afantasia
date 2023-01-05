@@ -14,5 +14,4 @@ public class Eagle extends WingedAnimal {
     public String toString() {
         return this.getClass().getSimpleName() + " " + this.getName();
     }
-
 }

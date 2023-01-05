@@ -1,6 +1,7 @@
 package model.game;
 
 public class Player {
+
 	private String name;
 	private int lifePoints;
 	private Bag bag;

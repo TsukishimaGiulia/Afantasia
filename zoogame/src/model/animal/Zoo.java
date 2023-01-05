@@ -10,6 +10,10 @@ public class Zoo {
 
     private Map<Class<? extends Animal>, List<Animal>> animalMap = new HashMap<>();
 
+    public Map<Class<? extends Animal>, List<Animal>> getAnimalMap() {
+        return animalMap;
+    }
+
     public void initialize(){
         List<Animal> eagles = new ArrayList<>();
         List<Animal> tigers = new ArrayList<>();
@@ -27,14 +31,9 @@ public class Zoo {
         tigers.add(new Tiger("Sherekhan", "gazzelle", 22, LocalDate.now(), 3.6,3.8, 1.8));
         tigers.add(new Tiger("Torakiki", "frittelle", 22, LocalDate.now(), 3.6,3.8, 1.8));
 
-
         animalMap.put(Eagle.class, eagles);
         animalMap.put(Lion.class, lions);
         animalMap.put(Tiger.class, tigers);
-    }
-
-    public Map<Class<? extends Animal>, List<Animal>> getAnimalMap() {
-        return animalMap;
     }
 
     public List<Animal> getAllAnimals(){

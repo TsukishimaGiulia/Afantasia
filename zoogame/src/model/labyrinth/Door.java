@@ -1,15 +1,10 @@
 package model.labyrinth;
 
 public class Door {
+
     private boolean open;
-
     private Room presentRoom;
-
     private Room arrivingRoom;
-
-    // La porta collega sempre e comunque due stanze: infatti, se in futuro volessimo aggiungere dei corridoi, il corridoio sarà comunque una (figlia di) stanza e le due stanze collegate saranno la stanza di partenza (1) e il corridoio (2).
-    // Come potremmo impostare una dimensione fissa = 2?
-
 
     public Door(boolean open, Room presentRoom, Room arrivingRoom) {
         this.open = open;
@@ -38,6 +33,4 @@ public class Door {
             return null;
         }
     }
-
-
 }

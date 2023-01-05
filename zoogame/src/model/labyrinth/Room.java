@@ -14,6 +14,7 @@ public class Room {
 	private List<Item> items = new ArrayList<>();
 	private List<Animal> animals = new ArrayList<>();
 	private Map<String, Door> doors = new HashMap<>();
+	private boolean exit = false;
 
 	public Room(String name) {
 		this.name = name;
@@ -71,6 +72,14 @@ public class Room {
 		this.doors = doors;
 	}
 
+	public boolean isExit() {
+		return exit;
+	}
+
+	public void setExit(boolean exit) {
+		this.exit = exit;
+	}
+
 	public void addItem(Item item){
 		items.add(item);
 	};
@@ -88,7 +97,7 @@ public class Room {
 				(animals == null || animals.isEmpty() ? "There are no animals" : "Animals in the room: " + animals) + ".\n" +
 				"List of doors: \n";
 		for (String key : doors.keySet()) {
-			output += "- " + key.toString() + " door, leading to " + doors.get(key).nextRoom(this).getName();
+			output += "- " + key.toString() + " door, leading to " + doors.get(key).nextRoom(this).getName() + "\n";
 		}
 		return output;
 	}
