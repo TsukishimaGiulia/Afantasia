@@ -11,14 +11,19 @@ import java.util.Map;
 public class Bag {
 
 	private List<Item> items = new ArrayList<>();
-	private final int totalBagSlots = 40;
+	private final int totalBagSlots = 5;
 
 	public List<Item> getItems() {
 		return items;
 	}
 
-	public void addItem(Item item){
+	public boolean addItem(Item item){
+		if(availableSlots() >= item.getRequiredSlots()){
 			items.add(item);
+			return true;
+		}else{
+			throw new RuntimeException("Bag is full");
+		}
 	};
 	public Item dropItem(Item item){
 		if(items.remove(item)) {

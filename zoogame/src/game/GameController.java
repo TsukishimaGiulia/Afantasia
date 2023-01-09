@@ -25,7 +25,12 @@ public class GameController {
 		Labyrinth labyrinth;
 		Room currentRoom;
 
-		System.out.println("Welcome to Afantasia, our fantastic world without fantasy!\n" +
+		System.out.println("Please enter your name");
+		System.out.print(">");
+		input = InputController.readString();
+		player.setName(input);
+
+		System.out.println("Hello " + player.getName() + "! Welcome to Afantasia, our fantastic world without fantasy!\n" +
 				"In this game, you're lost in a labyrinth and you have to find the exit.\n" +
 				"In your path you will find animals that can give you suggestions on what to do, and objects to collect.\n");
 
@@ -36,12 +41,12 @@ public class GameController {
 			try {
 				labyrinthDimension = Integer.parseInt(input);
 			}catch(NumberFormatException e){
-				System.err.println("You must type a number!!!!!");
+				System.err.println("You must type a number!!!!!"); //TO DO: check why it isn't always printed at the same point
 			}
-			labyrinth = new Labyrinth(labyrinthDimension);
-			labyrinth.addAnimalsAndItemsToLabyrinth();
 		}while(labyrinthDimension>100 || labyrinthDimension<5);
 
+		labyrinth = new Labyrinth(labyrinthDimension);
+		labyrinth.addAnimalsAndItemsToLabyrinth();
 		currentRoom = labyrinth.getRooms().get(0);
 
 		System.out.println("Congratulations, a labyrinth with " + labyrinth.getRooms().size() + " rooms has been created ;-) .\n" +
@@ -69,7 +74,7 @@ public class GameController {
 							currentRoom = room;
 							output = "You have just stepped into " + currentRoom.toString();
 							if(currentRoom.isExit()){
-								output = "Congratulations, you've found the exit!";
+								output = "Congratulations, " + player.getName() + ", you've found the exit!";
 								gameEnded = true;
 							}
 						}
@@ -83,9 +88,8 @@ public class GameController {
 					case "get":
 						itemName = splitInput[1];
 						itemOptional = currentRoom.getItems().stream().filter(i -> i.getName().equalsIgnoreCase(itemName)).findFirst();
-						if(itemOptional.isPresent()){
+						if(itemOptional.isPresent() && player.getBag().addItem(itemOptional.get())){
 							currentRoom.removeItem(itemOptional.get());
-							player.getBag().addItem(itemOptional.get());
 							output = "You have put " + itemName + " into your bag.";
 						}else {
 							output = "There isn't any " + itemName + " in this room.";
@@ -112,6 +116,7 @@ public class GameController {
 						break;
 					case "exit":
 						gameEnded = true;
+						output = "Bye, " + player.getName() + ". We hope to see you again! :-) ";
 						break;
 					default:
 						output = "Command not valid, type 'help' to see the command list.";
@@ -119,6 +124,8 @@ public class GameController {
 				}
 			}catch(IndexOutOfBoundsException e){
 				output = "You must specify a parameter for the command " + input + ".";
+			}catch (Exception e){
+				output = e.getMessage();
 			}
 
 			System.out.println(output + "\n");

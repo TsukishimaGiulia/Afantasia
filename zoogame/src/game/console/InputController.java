@@ -19,5 +19,6 @@ public class InputController {
 			System.err.println("Error while reading user input");
 			return "";
 		}
+
 	}
 }

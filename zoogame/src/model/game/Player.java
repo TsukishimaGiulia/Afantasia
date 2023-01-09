@@ -1,5 +1,7 @@
 package model.game;
 
+import model.item.Item;
+
 public class Player {
 
 	private String name;
@@ -37,7 +39,4 @@ public class Player {
 		return bag;
 	}
 
-	public void setBag(Bag bag) {
-		this.bag = bag;
-	}
 }
