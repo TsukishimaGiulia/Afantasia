@@ -2,6 +2,7 @@ package model.labyrinth;
 
 import model.animal.categories.Animal;
 import model.item.Item;
+import utility.Utils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -93,7 +94,7 @@ public class Room {
 	@Override
 	public String toString() {
 		String output = "Room named " + name + ".\n" +
-				(items == null || items.isEmpty() ?  "There are no items" : "Items in the room: " + items) + ".\n" +
+				(items == null || items.isEmpty() ?  "There are no items.\n" : "Items in the room:\n" + Utils.itemsToString(items)) +
 				(animals == null || animals.isEmpty() ? "There are no animals" : "Animals in the room: " + animals) + ".\n" +
 				"List of doors: \n";
 		for (String key : doors.keySet()) {

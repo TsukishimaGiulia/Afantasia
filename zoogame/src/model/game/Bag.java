@@ -1,9 +1,12 @@
 package model.game;
 
 import model.item.Item;
+import utility.Utils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Bag {
 
@@ -24,7 +27,7 @@ public class Bag {
 		return null;
 	};
 
-	public int availableSlots (){
+	private int availableSlots (){
 		int sum = items.stream().mapToInt(Item::getRequiredSlots).sum();
 		return totalBagSlots - sum;
 	}
@@ -32,7 +35,8 @@ public class Bag {
 	@Override
 	public String toString() {
 		return "Your bag" + "\n" +
-				(items == null || items.isEmpty() ? "There are no items" : "Your items: " + items) + ".\n" +
+				(items == null || items.isEmpty() ? "There are no items" : "Your items:\n" + Utils.itemsToString(items)) + "\n" +
 				"Available slots: " + availableSlots() + ".";
 	}
+
 }

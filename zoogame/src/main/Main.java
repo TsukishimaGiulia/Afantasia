@@ -25,8 +25,7 @@ public class Main {
         Player player = new Player("Giulia", 100, bag);
         Item item = new Item("una cosa","una cosa", 2);
         bag.addItem(item);
-
-
+        bag.addItem(item);
 
         GameController gameController = new GameController(player);
 

@@ -4,7 +4,7 @@ import model.animal.Zoo;
 import model.animal.categories.Animal;
 import model.item.Item;
 import model.item.Items;
-import utility.Directions;
+import utility.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,9 +45,9 @@ public class Labyrinth {
                     break;
                 room1 = new Room("room " + rooms.size());
                 Door door = new Door(true, r, room1);
-                String direction = Directions.calculateFreeDirection(r.getDoors());
+                String direction = Utils.calculateFreeDirection(r.getDoors());
                 r.getDoors().put(direction, door);
-                room1.getDoors().put(Directions.getOppositeDirection(direction), door);
+                room1.getDoors().put(Utils.getOppositeDirection(direction), door);
                 rooms.add(room1);
             }
         }
