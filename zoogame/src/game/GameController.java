@@ -11,24 +11,39 @@ import java.util.*;
 
 public class GameController {
 
-	private final Labyrinth labyrinth;
 	private final Player player;
 
-	public GameController(Labyrinth labyrinth, Player player) {
-		this.labyrinth = labyrinth;
+	public GameController(Player player) {
 		this.player = player;
 	}
 
 	public void runGame() {
-		Room currentRoom = labyrinth.getRooms().get(0);
+
 		boolean gameEnded = false;
+		String input;
+		int labyrinthDimension = 0;
+		Labyrinth labyrinth;
+		Room currentRoom;
 
 		System.out.println("Welcome to Afantasia, our fantastic world without fantasy!\n" +
 				"In this game, you're lost in a labyrinth and you have to find the exit.\n" +
-				"In your path you will find animals that can give you suggestions on what to do, and objects to collect.\n" +
-				"Before you begin the game, please choose the number of rooms in the labyrinth: ");
-		System.out.print(">");
-		String input = InputController.readString();
+				"In your path you will find animals that can give you suggestions on what to do, and objects to collect.\n");
+
+		do{
+			System.out.println("Please insert a number between 5 and 100 to define the dimension of the labyrinth: ");
+			System.out.print(">");
+			input = InputController.readString();
+			try {
+				labyrinthDimension = Integer.parseInt(input);
+			}catch(NumberFormatException e){
+				System.err.println("You must type a number!!!!!");
+			}
+			labyrinth = new Labyrinth(labyrinthDimension);
+			labyrinth.addAnimalsAndItemsToLabyrinth();
+		}while(labyrinthDimension>100 || labyrinthDimension<5);
+
+		currentRoom = labyrinth.getRooms().get(0);
+
 		System.out.println("Congratulations, a labyrinth with " + labyrinth.getRooms().size() + " rooms has been created ;-) .\n" +
 				"You are now in the entry room. You can type your commands using the keyboard: write help for a list of possible commands.\n\n" +
 				currentRoom.toString() + "\n");

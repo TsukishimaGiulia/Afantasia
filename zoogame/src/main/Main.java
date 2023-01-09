@@ -26,10 +26,9 @@ public class Main {
         Item item = new Item("cosa","una cosa", 2);
         bag.addItem(item);
 
-        Labyrinth labyrinth = new Labyrinth(10);
-        labyrinth.addAnimalsAndItemsToLabyrinth();
 
-        GameController gameController = new GameController(labyrinth, player);
+
+        GameController gameController = new GameController(player);
 
         gameController.runGame();
     }
