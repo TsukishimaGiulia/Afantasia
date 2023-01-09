@@ -6,12 +6,13 @@ public enum Direction {
     SOUTH,
     WEST,
     EAST;
-
-//    NORTH_WEST,
-//    SOUTH_EAST;
+   /* NORTH_WEST,
+    SOUTH_EAST;
+    */
 
     @Override
     public String toString() {
-        return this.name().toLowerCase();
+        return this.name().toLowerCase()
+                /*.replaceAll("_", " ")*/;
     }
 }

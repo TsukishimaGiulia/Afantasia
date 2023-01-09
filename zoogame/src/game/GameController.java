@@ -53,14 +53,15 @@ public class GameController {
 
 			System.out.print(">");
 			input = InputController.readString();
+			String[] splitInput = input.toLowerCase().split(" ", 2);
 			String itemName;
 			Optional<Item> itemOptional;
 
 			try {
-				switch(input.toLowerCase().split(" ")[0]){
+				switch(splitInput[0]){
 
 					case "go":
-						Room room = goToNextRoom(currentRoom, input.toLowerCase().split(" ")[1]);
+						Room room = goToNextRoom(currentRoom, splitInput[1]);
 						if(room.equals(currentRoom) || room == null){
 							output = "The selected room does not exist. You still are in " + currentRoom.getName() + ".";
 						}
@@ -80,7 +81,7 @@ public class GameController {
 						output = player.getBag().toString();
 						break;
 					case "get":
-						itemName = input.split(" ")[1];
+						itemName = splitInput[1];
 						itemOptional = currentRoom.getItems().stream().filter(i -> i.getName().equalsIgnoreCase(itemName)).findFirst();
 						if(itemOptional.isPresent()){
 							currentRoom.removeItem(itemOptional.get());
@@ -91,7 +92,7 @@ public class GameController {
 						}
 						break;
 					case "drop":
-						itemName = input.split(" ")[1];
+						itemName = splitInput[1];
 						itemOptional = player.getBag().getItems().stream().filter(i -> i.getName().equalsIgnoreCase(itemName)).findFirst();
 						if(itemOptional.isPresent()){
 							player.getBag().dropItem(itemOptional.get());

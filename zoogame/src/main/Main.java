@@ -23,7 +23,7 @@ public class Main {
 
         Bag bag = new Bag();
         Player player = new Player("Giulia", 100, bag);
-        Item item = new Item("cosa","una cosa", 2);
+        Item item = new Item("una cosa","una cosa", 2);
         bag.addItem(item);
 
 

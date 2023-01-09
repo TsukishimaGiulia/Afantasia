@@ -29,10 +29,11 @@ public class Directions {
                 return "east";
             case "east":
                 return "west";
-//            case "north_west":
-//                return "south_east";
-//            case "south_east":
-//                return "north_west";
+           /* case "north west":
+                return "south east";
+            case "south east":
+                return "north west";
+            */
             default:
                 throw new RuntimeException("direction not managed");
         }
