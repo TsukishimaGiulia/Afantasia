@@ -19,13 +19,4 @@ public abstract class TailedAnimal extends Animal {
         this.tailLength = tailLength;
     }
 
-    @Override
-    public String toString() {
-        return "AnimalWithTail{" +
-                "name=" + super.getName() + " " +
-                "weight" + super.getWeight() + " " +
-                "height" + super.getHeight() + " " +
-                "tailLength=" + tailLength +
-                '}';
-    }
 }

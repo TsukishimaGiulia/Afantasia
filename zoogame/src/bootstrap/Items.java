@@ -1,6 +1,6 @@
 package bootstrap;
 
-import model.item.Item;
+import model.item.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,34 +21,69 @@ public class Items {
     }
 
     public void initialize(){
-        items.add(new Item("apple", "restores 10 lp", 3));
-        items.add(new Item("banana", "restores 15 lp", 4));
-        items.add(new Item("poisoned apple", "takes off 10 lp", 2));
-        items.add(new Item("cosa", "it's only a thing", 2));
-        items.add(new Item("eagle plume", "keep it safe, maybe somebody's looking for it", 5));
-        items.add(new Item("poisoned apple", "takes off 10 lp", 2));
-        items.add(new Item("bottle of water", "restores 5 lp", 3));
-        items.add(new Item("pen", "throw it away you don't need", 1));
-        items.add(new Item("shoes", "keep it safe, maybe somebody's looking for it", 1));
-        items.add(new Item("stopper", "throw it away you don't need", 1));
-        items.add(new Item("bottle of wine", "attention, you may get lost after drinking it", 2));
-        items.add(new Item("pizza", "restores 10 lp", 3));
-        items.add(new Item("steak", "restores 10 lp", 3));
-        items.add(new Item("gem", "keep it carefully, you may need it", 5));
-        items.add(new Item("mushroom", "restores 2 lp", 2));
-        items.add(new Item("poisonous mushroom", "takes off 3 lp", 2));
-        items.add(new Item("flower", "not helpful, but it's nice", 1));
-        items.add(new Item("rope", "you may need it", 2));
-        items.add(new Item("leaf", "you may need it", 2));
-        items.add(new Item("sceptre", "keep it carefully, you may need it", 5));
-        items.add(new Item("hat", "not helpful, but it's nice", 1));
-        items.add(new Item("book", "you may need it", 3));
-        items.add(new Item("magic lamp", "keep it safe, maybe somebody's looking for it", 5));
-        items.add(new Item("broom", "throw it away you don't need", 1));
-        items.add(new Item("potion", "restores 10 lp", 3));
-        items.add(new Item("wand", "you may need it", 2));
-        items.add(new Item("cursed ring", "takes off 15 lp", 3));
-        items.add(new Item("emerald necklace", "takes off 10 lp", 2));
-        items.add(new Item("shield", "keep it carefully, you may need it", 5));
+        items.add(new HealthyItem("apple", "restores 10 lp", 3));
+        items.add(new HealthyItem("apple", "restores 10 lp", 3));
+        items.add(new HealthyItem("apple", "restores 10 lp", 3));
+        items.add(new HealthyItem("banana", "restores 15 lp", 4));
+        items.add(new HealthyItem("banana", "restores 15 lp", 4));
+        items.add(new HealthyItem("banana", "restores 15 lp", 4));
+        items.add(new HealthyItem("bottle of water", "restores 5 lp", 3));
+        items.add(new HealthyItem("bottle of water", "restores 5 lp", 3));
+        items.add(new HealthyItem("bottle of water", "restores 5 lp", 3));
+        items.add(new HealthyItem("pizza", "restores 10 lp", 3));
+        items.add(new HealthyItem("pizza", "restores 10 lp", 3));
+        items.add(new HealthyItem("pizza", "restores 10 lp", 3));
+        items.add(new HealthyItem("steak", "restores 10 lp", 3));
+        items.add(new HealthyItem("steak", "restores 10 lp", 3));
+        items.add(new HealthyItem("steak", "restores 10 lp", 3));
+        items.add(new HealthyItem("mushroom", "restores 2 lp", 2));
+        items.add(new HealthyItem("mushroom", "restores 2 lp", 2));
+        items.add(new HealthyItem("mushroom", "restores 2 lp", 2));
+        items.add(new HealthyItem("potion", "restores 10 lp", 3));
+        items.add(new HealthyItem("potion", "restores 10 lp", 3));
+        items.add(new HealthyItem("potion", "restores 10 lp", 3));
+
+        items.add(new UselessItem("cosa", "it's only a thing", 2));
+        items.add(new UselessItem("cosa", "it's only a thing", 2));
+        items.add(new UselessItem("pen", "throw it away you don't need", 1));
+        items.add(new UselessItem("pen", "throw it away you don't need", 1));
+        items.add(new UselessItem("shoes", "throw it away you don't need", 1));
+        items.add(new UselessItem("shoes", "throw it away you don't need", 1));
+        items.add(new UselessItem("stopper", "throw it away you don't need", 1));
+        items.add(new UselessItem("stopper", "throw it away you don't need", 1));
+        items.add(new UselessItem("flower", "not helpful, but it's nice", 1));
+        items.add(new UselessItem("flower", "not helpful, but it's nice", 1));
+        items.add(new UselessItem("rope", "throw it away you don't need", 2));
+        items.add(new UselessItem("rope", "throw it away you don't need", 2));
+        items.add(new UselessItem("leaf", "throw it away you don't need", 2));
+        items.add(new UselessItem("leaf", "throw it away you don't need", 2));
+        items.add(new UselessItem("hat", "not helpful, but it's nice", 1));
+        items.add(new UselessItem("hat", "not helpful, but it's nice", 1));
+        items.add(new UselessItem("broom", "throw it away you don't need it", 1));
+        items.add(new UselessItem("broom", "throw it away you don't need it", 1));
+
+        items.add(new UnhealthyItem("poisoned apple", "takes off 10 lp", 2));
+        items.add(new UnhealthyItem("poisoned apple", "takes off 10 lp", 2));
+        items.add(new UnhealthyItem("poisoned apple", "takes off 10 lp", 2));
+        items.add(new UnhealthyItem("bottle of wine", "attention, you may get lost after drinking it", 2));
+        items.add(new UnhealthyItem("bottle of wine", "attention, you may get lost after drinking it", 2));
+        items.add(new UnhealthyItem("bottle of wine", "attention, you may get lost after drinking it", 2));
+        items.add(new UnhealthyItem("poisonous mushroom", "takes off 3 lp", 2));
+        items.add(new UnhealthyItem("poisonous mushroom", "takes off 3 lp", 2));
+        items.add(new UnhealthyItem("poisonous mushroom", "takes off 3 lp", 2));
+        items.add(new UnhealthyItem("cursed ring", "takes off 15 lp", 3));
+        items.add(new UnhealthyItem("cursed ring", "takes off 15 lp", 3));
+        items.add(new UnhealthyItem("cursed ring", "takes off 15 lp", 3));
+        items.add(new UnhealthyItem("cursed emerald", "takes off 10 lp", 2));
+        items.add(new UnhealthyItem("cursed emerald", "takes off 10 lp", 2));
+        items.add(new UnhealthyItem("cursed emerald", "takes off 10 lp", 2));
+
+        items.add(new PreciousItem("eagle plume", "keep it safe, maybe somebody's looking for it", 5));
+        items.add(new PreciousItem("gem", "keep it carefully, you may need it", 5));
+        items.add(new PreciousItem("sceptre", "keep it carefully, you may need it", 5));
+        items.add(new PreciousItem("book", "you may need it", 3));
+        items.add(new PreciousItem("magic lamp", "keep it safe, maybe somebody's looking for it", 5));
+        items.add(new PreciousItem("wand", "you may need it", 2));
+        items.add(new PreciousItem("shield", "keep it carefully, you may need it", 5));
     }
 }

@@ -70,13 +70,6 @@ public abstract class Animal {
 
     @Override
     public String toString() {
-        return "Animal{" +
-                "name='" + name + '\'' +
-                ", favoriteFood='" + favoriteFood + '\'' +
-                ", age=" + age +
-                ", dateOfEntry=" + dateOfEntry +
-                ", weight=" + weight +
-                ", height=" + height +
-                '}';
+        return this.getClass().getSimpleName() + " " + this.getName();
     }
 }

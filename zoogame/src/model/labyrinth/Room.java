@@ -95,7 +95,7 @@ public class Room {
 	public String toString() {
 		String output = "Room named " + name + ".\n" +
 				(items == null || items.isEmpty() ?  "There are no items.\n" : "Items in the room:\n" + Utils.itemsToString(items)) +
-				(animals == null || animals.isEmpty() ? "There are no animals" : "Animals in the room: " + animals) + ".\n" +
+				(animals == null || animals.isEmpty() ? "There are no animals" : "Animals in the room: " + animals) + "\n" +
 				"List of doors: \n";
 		for (String key : doors.keySet()) {
 			output += "- " + key.toString() + " door, leading to " + doors.get(key).nextRoom(this).getName() + "\n";

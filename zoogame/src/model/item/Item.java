@@ -1,6 +1,8 @@
 package model.item;
 
-public class Item {
+import model.game.Player;
+
+public abstract class Item {
 
 	private String name;
 	private String description;
@@ -32,9 +34,7 @@ public class Item {
 		return requiredSlots;
 	}
 
-	public void setRequiredSlots(int requiredSlots) {
-		this.requiredSlots = requiredSlots;
-	}
+	public abstract String use(Player player);
 
 	@Override
 	public String toString() {
