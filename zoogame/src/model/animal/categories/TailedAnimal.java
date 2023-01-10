@@ -18,5 +18,4 @@ public abstract class TailedAnimal extends Animal {
     public void setTailLength(Double tailLength) {
         this.tailLength = tailLength;
     }
-
 }

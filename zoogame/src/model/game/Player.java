@@ -8,13 +8,7 @@ public class Player {
 	private int lifePoints;
 	private Bag bag;
 
-	public Player(String name, int lifePoints) {
-		this.name = name;
-		this.lifePoints = lifePoints;
-	}
-
-	public Player(String name, int lifePoints, Bag bag) {
-		this.name = name;
+	public Player(int lifePoints, Bag bag) {
 		this.lifePoints = lifePoints;
 		this.bag = bag;
 	}
@@ -38,5 +32,4 @@ public class Player {
 	public Bag getBag() {
 		return bag;
 	}
-
 }

@@ -18,5 +18,4 @@ public abstract class WingedAnimal extends Animal {
     public void setWingspan(Double wingspan) {
         this.wingspan = wingspan;
     }
-
 }

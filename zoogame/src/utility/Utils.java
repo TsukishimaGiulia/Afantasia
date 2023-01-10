@@ -39,7 +39,6 @@ public class Utils {
 
     public static String itemsToString(List<Item> items) {
         String output = "";
-
         Map<String, Integer> itemsOccurrences = new HashMap<>();
 
         items.stream().forEach(i -> {

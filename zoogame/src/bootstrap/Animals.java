@@ -69,11 +69,4 @@ public class Animals {
         List <Animal> animals = animalMap.putIfAbsent(animal.getClass(), new ArrayList<>());
         animals.add(animal);
     }
-
-    @Override
-    public String toString() {
-        return "Zoo{" +
-                "animalMap=" + animalMap +
-                '}';
-    }
 }

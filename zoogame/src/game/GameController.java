@@ -29,10 +29,9 @@ public class GameController {
 		System.out.print(">");
 		input = InputController.readString();
 		player.setName(input);
-
 		System.out.println("Hello " + player.getName() + "! Welcome to Afantasia, our fantastic world without fantasy!\n" +
 				"In this game, you're lost in a labyrinth and you have to find the exit.\n" +
-				"In your path you will find animals that can give you suggestions on what to do, and objects to collect.\n");
+				"In your path you will find animals and objects to collect.\n");
 
 		while(labyrinthDimension>100 || labyrinthDimension<5){
 			System.out.println("Please insert a number between 5 and 100 to define the dimension of the labyrinth: ");
@@ -48,14 +47,12 @@ public class GameController {
 		labyrinth = new Labyrinth(14); //nRooms is constant because we don't have enough animals and items
 		labyrinth.addAnimalsAndItemsToLabyrinth();
 		currentRoom = labyrinth.getRooms().get(0);
-
-		System.out.println("Congratulations, a labyrinth with " + labyrinth.getRooms().size() + " rooms has been created ;-) .\n" +
+		System.out.println("Congratulations, a labyrinth with " + labyrinth.getRooms().size() + " rooms has been created ;-) . Who do you think you are to take such a decision!?\n" +
 				"You are now in the entry room. You can type your commands using the keyboard: write help for a list of possible commands.\n\n" +
 				currentRoom.toString() + "\n");
 
 		while(!gameEnded) {
 			String output = "";
-
 			System.out.print(">");
 			input = InputController.readString();
 			String[] splitInput = input.toLowerCase().split(" ", 2);
@@ -64,7 +61,6 @@ public class GameController {
 
 			try {
 				switch(splitInput[0]){
-
 					case "go":
 						Room room = goToNextRoom(currentRoom, splitInput[1]);
 						if(room.equals(currentRoom) || room == null){

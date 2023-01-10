@@ -24,13 +24,14 @@ public class Bag {
 		}else{
 			throw new RuntimeException("Bag is full");
 		}
-	};
+	}
+
 	public Item dropItem(Item item){
 		if(items.remove(item)) {
 			return item;
 		}
 		return null;
-	};
+	}
 
 	private int availableSlots (){
 		int sum = items.stream().mapToInt(Item::getRequiredSlots).sum();
@@ -43,5 +44,4 @@ public class Bag {
 				(items == null || items.isEmpty() ? "There are no items" : "Your items:\n" + Utils.itemsToString(items)) + "\n" +
 				"Available slots: " + availableSlots() + ".";
 	}
-
 }

@@ -10,14 +10,14 @@ public class HealthyItem extends Item{
         super(name, description, requiredSlots);
     }
 
+    public HealthyItem(String name, String description, int requiredSlots, int restoredLp) {
+        super(name, description, requiredSlots);
+        this.restoredLp = restoredLp;
+    }
+
     @Override
     public String use(Player player) {
         //TO DO: implement this method
         return restoredLp + " lp have been restored.";
-    }
-
-    public HealthyItem(String name, String description, int requiredSlots, int restoredLp) {
-        super(name, description, requiredSlots);
-        this.restoredLp = restoredLp;
     }
 }
