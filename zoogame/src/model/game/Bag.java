@@ -11,7 +11,7 @@ import java.util.Map;
 public class Bag {
 
 	private List<Item> items = new ArrayList<>();
-	private final int totalBagSlots = 5;
+	private final int totalBagSlots = 40;
 
 	public List<Item> getItems() {
 		return items;

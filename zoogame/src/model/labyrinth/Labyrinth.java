@@ -1,9 +1,9 @@
 package model.labyrinth;
 
-import model.animal.Zoo;
+import bootstrap.Animals;
 import model.animal.categories.Animal;
 import model.item.Item;
-import model.item.Items;
+import bootstrap.Items;
 import utility.Utils;
 
 import java.util.ArrayList;
@@ -55,12 +55,12 @@ public class Labyrinth {
     }
 
     public void addAnimalsToLabyrinth() {
-        Zoo zoo = new Zoo();
+        Animals zoo = new Animals();
         Random random = new Random();
         int randomIndex;
 
         List<Animal> animals = zoo.getAllAnimals();
-        int nAnimals = nRooms / 3;
+        int nAnimals = nRooms;
 
         for (int i = 1; i <= nAnimals; i++) {
             randomIndex = random.nextInt(animals.size());
@@ -79,7 +79,7 @@ public class Labyrinth {
         Random random = new Random();
         int randomIndex;
 
-        int nItems = nRooms/3;
+        int nItems = nRooms*2;
         for(int i = 1; i <= nItems; i++){
             randomIndex = random.nextInt(items.getItems().size());
             Item selectedItem = items.getItems().get(randomIndex);

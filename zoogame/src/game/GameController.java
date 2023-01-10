@@ -34,7 +34,7 @@ public class GameController {
 				"In this game, you're lost in a labyrinth and you have to find the exit.\n" +
 				"In your path you will find animals that can give you suggestions on what to do, and objects to collect.\n");
 
-		do{
+		while(labyrinthDimension>100 || labyrinthDimension<5){
 			System.out.println("Please insert a number between 5 and 100 to define the dimension of the labyrinth: ");
 			System.out.print(">");
 			input = InputController.readString();
@@ -43,9 +43,9 @@ public class GameController {
 			}catch(NumberFormatException e){
 				System.err.println("You must type a number!!!!!"); //TO DO: check why it isn't always printed at the same point
 			}
-		}while(labyrinthDimension>100 || labyrinthDimension<5);
+		};
 
-		labyrinth = new Labyrinth(labyrinthDimension);
+		labyrinth = new Labyrinth(14); //nRooms is constant because we don't have enough animals and items
 		labyrinth.addAnimalsAndItemsToLabyrinth();
 		currentRoom = labyrinth.getRooms().get(0);
 
