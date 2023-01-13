@@ -19,7 +19,7 @@ public class Stringify {
 
         items.stream().forEach(i -> {
             if (itemsOccurrences.get(i.getName()) != null) {
-                Integer x = itemsOccurrences.get((i.getName()));
+                int x = itemsOccurrences.get((i.getName()));
                 x++;
                 itemsOccurrences.put(i.getName(), x);
             }else {
@@ -28,7 +28,7 @@ public class Stringify {
         });
 
         for (String key : itemsOccurrences.keySet()) {
-            output += "\n- " + key.toString() + " x" + itemsOccurrences.get(key) + "";
+            output += "\n- " + key + " x" + itemsOccurrences.get(key) + "";
         }
 
         return output;
