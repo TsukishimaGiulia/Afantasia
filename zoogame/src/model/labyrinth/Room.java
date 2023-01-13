@@ -2,7 +2,7 @@ package model.labyrinth;
 
 import model.animal.categories.Animal;
 import model.item.Item;
-import utility.Utils;
+import utils.Stringify;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -78,22 +78,26 @@ public class Room {
 
 	public void addItem(Item item){
 		items.add(item);
-	};
+	}
+
 	public Item removeItem(Item item){
 		if(items.remove(item)) {
 			return item;
 		}
 		return null;
-	};
+	}
 
-	@Override
-	public String toString() {
-		String output = "Room named " + name + ".\n" +
-				(items == null || items.isEmpty() ?  "There are no items.\n" : "Items in the room:\n" + Utils.itemsToString(items)) +
-				(animals == null || animals.isEmpty() ? "There are no animals" : "Animals in the room: " + animals) + "\n" +
-				"List of doors: \n";
-		for (String key : doors.keySet()) {
-			output += "- " + key.toString() + " door, leading to " + doors.get(key).nextRoom(this).getName() + "\n";
+	public String description() {
+		return "Room named " + name + "." +
+				"\nItems in the room:" + Stringify.listOfItems(items) +
+				"\nAnimals in the room: " + Stringify.listOfAnimals(animals) +
+				"\nList of Doors: " + mapOfDoorsToString();
+	}
+
+	private String mapOfDoorsToString(){
+		String output = "";
+		for (Direction key : doors.keySet()) {
+			output += "\n- " + key.getName() + " door, leading to " + doors.get(key).nextRoom(this).getName();
 		}
 		return output;
 	}
