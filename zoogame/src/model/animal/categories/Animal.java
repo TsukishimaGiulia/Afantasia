@@ -68,8 +68,7 @@ public abstract class Animal {
         this.height = height;
     }
 
-    @Override
-    public String toString() {
+    public String simpleDescription() {
         return this.getClass().getSimpleName() + " " + this.getName();
     }
 }

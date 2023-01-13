@@ -44,7 +44,7 @@ public class Stringify {
         return (animals == null || animals.isEmpty() ?
                 "There are no animals" :
                 animals.stream()
-                        .map(a -> a.toString())
+                        .map(a -> a.simpleDescription())
                         .reduce("", (s1,s2)-> s1 + "\n- " + s2));
     }
 }
