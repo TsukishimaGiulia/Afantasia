@@ -8,7 +8,8 @@ public class Player {
 	private int lifePoints;
 	private Bag bag;
 
-	public Player(int lifePoints, Bag bag) {
+	public Player(String name, int lifePoints, Bag bag) {
+		this.name = name;
 		this.lifePoints = lifePoints;
 		this.bag = bag;
 	}

@@ -1,5 +1,6 @@
 package utility;
 
+import exception.DirectionNotFoundException;
 import model.item.Item;
 import model.labyrinth.Direction;
 import model.labyrinth.Door;
@@ -8,32 +9,31 @@ import java.util.*;
 
 public class Utils {
 
-    public static String calculateFreeDirection(Map<String, Door> doors){
-        List<String> directions = new ArrayList<>();
+    private Utils(){
+
+    }
+
+    public static Direction calculateFreeDirection(Map<Direction, Door> doors){
+        List<Direction> directions = new ArrayList<>();
         for(Direction d : Direction.values()){
-            directions.add(d.toString());
+            directions.add(d);
         }
         directions.removeAll(doors.keySet());
         return directions.get(new Random().nextInt(directions.size()));
     }
 
-    public static String getOppositeDirection(String direction){
-        switch(direction.toLowerCase()){
-            case "north":
-                return "south";
-            case "south":
-                return "north";
-            case "west":
-                return "east";
-            case "east":
-                return "west";
-           /* case "north west":
-                return "south east";
-            case "south east":
-                return "north west";
-            */
+    public static Direction getOppositeDirection(Direction direction) throws DirectionNotFoundException {
+        switch(direction){
+            case NORTH:
+                return Direction.SOUTH;
+            case SOUTH:
+                return Direction.NORTH;
+            case WEST:
+                return Direction.EAST;
+            case EAST:
+                return Direction.WEST;
             default:
-                throw new RuntimeException("direction not managed");
+                throw new DirectionNotFoundException("direction not managed");
         }
     }
 

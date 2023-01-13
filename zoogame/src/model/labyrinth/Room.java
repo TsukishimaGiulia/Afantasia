@@ -12,35 +12,30 @@ import java.util.Map;
 public class Room {
 
 	private String name;
-	private List<Item> items = new ArrayList<>();
-	private List<Animal> animals = new ArrayList<>();
-	private Map<String, Door> doors = new HashMap<>();
+	private List<Item> items;
+	private List<Animal> animals;
+	private Map<Direction, Door> doors;
 	private boolean exit = false;
 
 	public Room(String name) {
-		this.name = name;
+		this(name, new ArrayList<>(), new ArrayList<>(), new HashMap<>());
 	}
 
-	public Room(String name, List<Item> items, List<Animal> animals, Map<String, Door> doors) {
+	public Room(String name, Map<Direction, Door> doors) {
+		this(name, new ArrayList<>(), new ArrayList<>(), doors);
+	}
+
+	public Room(String name, List<Item> items, Map<Direction, Door> doors) {
+		this(name, items, new ArrayList<>(), doors);
+	}
+
+	public Room(String name, Map<Direction, Door> doors, List<Animal> animals) {
+		this(name, new ArrayList<>(), animals, doors);
+	}
+
+	public Room(String name, List<Item> items, List<Animal> animals, Map<Direction, Door> doors) {
 		this.name = name;
 		this.items = items;
-		this.animals = animals;
-		this.doors = doors;
-	}
-
-	public Room(String name, List<Item> items, Map<String, Door> doors) {
-		this.name = name;
-		this.items = items;
-		this.doors = doors;
-	}
-
-	public Room(String name, Map<String, Door> doors) {
-		this.name = name;
-		this.doors = doors;
-	}
-
-	public Room(String name, Map<String, Door> doors, List<Animal> animals) {
-		this.name = name;
 		this.animals = animals;
 		this.doors = doors;
 	}
@@ -65,11 +60,11 @@ public class Room {
 		this.animals = animals;
 	}
 
-	public Map<String, Door> getDoors() {
+	public Map<Direction, Door> getDoors() {
 		return doors;
 	}
 
-	public void setDoors(Map<String, Door> doors) {
+	public void setDoors(Map<Direction, Door> doors) {
 		this.doors = doors;
 	}
 

@@ -1,6 +1,7 @@
 package model.labyrinth;
 
 import bootstrap.Animals;
+import exception.DirectionNotFoundException;
 import model.animal.categories.Animal;
 import model.item.Item;
 import bootstrap.Items;
@@ -15,7 +16,7 @@ public class Labyrinth {
     private int nRooms;
     private List<Room> rooms;
 
-    public Labyrinth(int nRooms) {
+    public Labyrinth(int nRooms) throws DirectionNotFoundException {
         this.nRooms = nRooms;
         this.rooms = new ArrayList<>(nRooms);
         generateLabyrinth(nRooms);
@@ -25,8 +26,7 @@ public class Labyrinth {
         return rooms;
     }
 
-    private void generateLabyrinth(int nRooms) {
-//		double random = Math.random()*nRooms;
+    private void generateLabyrinth(int nRooms) throws DirectionNotFoundException {
 
         Room room = new Room("Entry room");
         rooms.add(room);
@@ -45,7 +45,7 @@ public class Labyrinth {
                     break;
                 room1 = new Room("room " + rooms.size());
                 Door door = new Door(true, r, room1);
-                String direction = Utils.calculateFreeDirection(r.getDoors());
+                Direction direction = Utils.calculateFreeDirection(r.getDoors());
                 r.getDoors().put(direction, door);
                 room1.getDoors().put(Utils.getOppositeDirection(direction), door);
                 rooms.add(room1);

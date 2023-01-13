@@ -2,17 +2,18 @@ package model.labyrinth;
 
 public enum Direction {
 
-    NORTH,
-    SOUTH,
-    WEST,
-    EAST;
-   /* NORTH_WEST,
-    SOUTH_EAST;
-    */
+    NORTH ("north"),
+    SOUTH("south"),
+    WEST("west"),
+    EAST("east");
 
-    @Override
-    public String toString() {
-        return this.name().toLowerCase()
-                /*.replaceAll("_", " ")*/;
+   private final String name;
+
+    Direction(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 }
