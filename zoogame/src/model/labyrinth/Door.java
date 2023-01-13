@@ -3,32 +3,32 @@ package model.labyrinth;
 public class Door {
 
     private boolean open;
-    private Room presentRoom;
-    private Room arrivingRoom;
+    private Room roomA;
+    private Room roomB;
 
-    public Door(boolean open, Room presentRoom, Room arrivingRoom) {
+    public Door(boolean open, Room roomA, Room roomB) {
         this.open = open;
-        this.presentRoom = presentRoom;
-        this.arrivingRoom = arrivingRoom;
+        this.roomA = roomA;
+        this.roomB = roomB;
     }
 
     public boolean isOpen() {
         return open;
     }
 
-    public Room getPresentRoom() {
-        return presentRoom;
+    public Room getRoomA() {
+        return roomA;
     }
 
-    public Room getArrivingRoom() {
-        return arrivingRoom;
+    public Room getRoomB() {
+        return roomB;
     }
 
     public Room nextRoom(Room currentRoom){
-        if(currentRoom.equals(presentRoom)){
-            return arrivingRoom;
-        } else if (currentRoom.equals(arrivingRoom)) {
-            return presentRoom;
+        if(currentRoom.equals(roomA)){
+            return roomB;
+        } else if (currentRoom.equals(roomB)) {
+            return roomA;
         } else {
             return null;
         }

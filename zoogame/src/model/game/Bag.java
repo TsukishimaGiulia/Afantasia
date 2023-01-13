@@ -4,14 +4,17 @@ import model.item.Item;
 import utility.Utils;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Bag {
 
-	private List<Item> items = new ArrayList<>();
-	private final int totalBagSlots = 40;
+	private List<Item> items;
+	private final int totalBagSlots;
+
+	public Bag(){
+		totalBagSlots = 40;
+		items = new ArrayList<>();
+	}
 
 	public List<Item> getItems() {
 		return items;
@@ -26,7 +29,7 @@ public class Bag {
 		}
 	}
 
-	public Item dropItem(Item item){
+	public Item removeItem(Item item){
 		if(items.remove(item)) {
 			return item;
 		}
