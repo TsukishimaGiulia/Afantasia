@@ -33,7 +33,7 @@ public class Bag {
 			availableSlots -= item.getRequiredSlots();
 			return true;
 		}else{
-			throw new RuntimeException("Bag is full");
+			throw new FullBagException("Bag is full!");
 		}
 	}
 
@@ -43,7 +43,7 @@ public class Bag {
 			availableSlots += item.getRequiredSlots();
 			return item;
 		}
-		return null;
+		throw new ItemNotFoundException("Item not found!");
 	}
 
 	public String description() {
