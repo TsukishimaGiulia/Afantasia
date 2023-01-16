@@ -46,9 +46,8 @@ public class Bag {
 		return null;
 	}
 
-	@Override
-	public String toString() {
-		return "Your bag" + "\n" +
+	public String description() {
+		return "Your bag" +
 				Stringify.listOfItems(items) + "\n" +
 				"Available slots: " + availableSlots + ".";
 	}
