@@ -3,6 +3,7 @@ package model.labyrinth;
 import model.animal.categories.Animal;
 import model.item.Item;
 import utils.Stringify;
+import utils.Search;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -80,7 +81,9 @@ public class Room {
 		items.add(item);
 	}
 
-	public Item removeItem(Item item){
+	//TODO: gestire exception
+	public Item removeItem(String itemName){
+		Item item = Search.itemByName(itemName, items);
 		if(items.remove(item)) {
 			return item;
 		}

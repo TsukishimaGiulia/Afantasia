@@ -98,6 +98,7 @@ public class GameController {
 				} catch (Exception e) {
 					output = e.getMessage();
 				}
+
 				System.out.println(output + "\n");
 			}
 			}catch(Exception e){

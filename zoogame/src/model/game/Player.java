@@ -2,6 +2,9 @@ package model.game;
 
 import model.item.Item;
 
+import java.util.List;
+import java.util.Optional;
+
 public class Player {
 
 	private String name;
@@ -32,5 +35,17 @@ public class Player {
 
 	public Bag getBag() {
 		return bag;
+	}
+
+	public boolean addItemToBag(Item item) {
+		return bag.addItem(item);
+	}
+
+	public Item removeItemFromBag(String itemName) {
+		return bag.removeItem(itemName);
+	}
+
+	public List<Item> getAllItemsFromBag() {
+		return bag.getItems();
 	}
 }
