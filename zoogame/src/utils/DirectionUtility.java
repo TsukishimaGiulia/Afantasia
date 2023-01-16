@@ -1,15 +1,14 @@
-package utility;
+package utils;
 
 import exception.DirectionNotFoundException;
-import model.item.Item;
 import model.labyrinth.Direction;
 import model.labyrinth.Door;
 
 import java.util.*;
 
-public class Utils {
+public class DirectionUtility {
 
-    private Utils(){
+    private DirectionUtility(){
 
     }
 
@@ -35,26 +34,5 @@ public class Utils {
             default:
                 throw new DirectionNotFoundException("direction not managed");
         }
-    }
-
-    public static String itemsToString(List<Item> items) {
-        String output = "";
-        Map<String, Integer> itemsOccurrences = new HashMap<>();
-
-        items.stream().forEach(i -> {
-            if (itemsOccurrences.get(i.getName()) != null) {
-                Integer x = itemsOccurrences.get((i.getName()));
-                x++;
-                itemsOccurrences.put(i.getName(), x);
-            }else {
-                itemsOccurrences.put(i.getName(),1);
-            }
-        });
-
-        for (String key : itemsOccurrences.keySet()) {
-            output += "- " + key.toString() + " x" + itemsOccurrences.get(key) + "\n";
-        }
-
-        return output;
     }
 }

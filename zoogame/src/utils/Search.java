@@ -1,4 +1,4 @@
-package utility;
+package utils;
 
 import model.item.Item;
 

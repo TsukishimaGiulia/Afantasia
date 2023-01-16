@@ -1,15 +1,15 @@
 package model.game;
 
 import model.item.Item;
-import utility.Search;
-import utility.Utils;
+import utils.Stringify;
+import utils.Search;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Bag {
 
-	private List<Item> items = new ArrayList<>();
+	private List<Item> items;
 	private int availableSlots;
 
 	public Bag(){
@@ -49,7 +49,7 @@ public class Bag {
 	@Override
 	public String toString() {
 		return "Your bag" + "\n" +
-				(items == null || items.isEmpty() ? "There are no items" : "Your items:\n" + Utils.itemsToString(items)) + "\n" +
+				Stringify.listOfItems(items) + "\n" +
 				"Available slots: " + availableSlots + ".";
 	}
 }

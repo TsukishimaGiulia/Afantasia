@@ -5,7 +5,7 @@ import exception.DirectionNotFoundException;
 import model.animal.categories.Animal;
 import model.item.Item;
 import bootstrap.Items;
-import utility.Utils;
+import utils.DirectionUtility;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,9 +45,9 @@ public class Labyrinth {
                     break;
                 room1 = new Room("room " + rooms.size());
                 Door door = new Door(true, r, room1);
-                Direction direction = Utils.calculateFreeDirection(r.getDoors());
+                Direction direction = DirectionUtility.calculateFreeDirection(r.getDoors());
                 r.getDoors().put(direction, door);
-                room1.getDoors().put(Utils.getOppositeDirection(direction), door);
+                room1.getDoors().put(DirectionUtility.getOppositeDirection(direction), door);
                 rooms.add(room1);
             }
         }

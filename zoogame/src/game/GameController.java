@@ -48,7 +48,7 @@ public class GameController {
 			currentRoom = labyrinth.getRooms().get(0);
 			System.out.println("Congratulations, a labyrinth with " + labyrinth.getRooms().size() + " rooms has been created ;-) . Who do you think you are to take such a decision!?\n" +
 					"You are now in the entry room. You can type your commands using the keyboard: write help for a list of possible commands.\n\n" +
-					currentRoom.toString() + "\n");
+					currentRoom.description() + "\n");
 
 			while (!gameEnded) {
 				String output = "";
@@ -66,7 +66,7 @@ public class GameController {
 								output = "The selected room does not exist. You still are in " + currentRoom.getName() + ".";
 							} else {
 								currentRoom = room;
-								output = "You have just stepped into " + currentRoom.toString();
+								output = "You have just stepped into " + currentRoom.description();
 								if (currentRoom.isExit()) {
 									output = "Congratulations, " + player.getName() + ", you've found the exit!";
 									gameEnded = true;
@@ -74,7 +74,7 @@ public class GameController {
 							}
 							break;
 						case "look":
-							output = currentRoom.toString();
+							output = currentRoom.description();
 							break;
 						case "bag":
 							output = player.getBag().toString();
