@@ -1,5 +1,7 @@
 package utils;
 
+import exception.FullBagException;
+import exception.ItemNotFoundException;
 import model.item.Item;
 
 import java.util.List;
@@ -8,7 +10,7 @@ public class Search {
 
     private Search(){}
 
-    public static Item itemByName(String itemName, List<Item> items){
+    public static Item itemByName (String itemName, List<Item> items) throws ItemNotFoundException {
         return items.stream()
                 .filter(i -> i.getName().equals(itemName))
                 .findFirst()
