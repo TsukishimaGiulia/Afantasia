@@ -1,5 +1,7 @@
 package model.game;
 
+import exception.FullBagException;
+import exception.ItemNotFoundException;
 import model.item.Item;
 import utils.Stringify;
 import utils.Search;
@@ -25,8 +27,7 @@ public class Bag {
 		return availableSlots;
 	}
 
-	//TODO: gestire exception
-	public boolean addItem(Item item){
+	public boolean addItem(Item item) throws FullBagException{
 		if(availableSlots >= item.getRequiredSlots()){
 			items.add(item);
 			availableSlots -= item.getRequiredSlots();
@@ -36,8 +37,7 @@ public class Bag {
 		}
 	}
 
-	//TODO: gestire exception
-	public Item removeItem(String itemName){
+	public Item removeItem(String itemName) throws ItemNotFoundException {
 		Item item = Search.itemByName(itemName,items);
 		if(items.remove(item)) {
 			availableSlots += item.getRequiredSlots();

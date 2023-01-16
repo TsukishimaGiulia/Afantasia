@@ -1,5 +1,7 @@
 package model.game;
 
+import exception.FullBagException;
+import exception.ItemNotFoundException;
 import model.item.Item;
 
 import java.util.List;
@@ -37,11 +39,11 @@ public class Player {
 		return bag;
 	}
 
-	public boolean addItemToBag(Item item) {
+	public boolean addItemToBag(Item item) throws FullBagException {
 		return bag.addItem(item);
 	}
 
-	public Item removeItemFromBag(String itemName) {
+	public Item removeItemFromBag(String itemName) throws ItemNotFoundException {
 		return bag.removeItem(itemName);
 	}
 

@@ -1,5 +1,7 @@
 package model.labyrinth;
 
+import exception.FullBagException;
+import exception.ItemNotFoundException;
 import model.animal.categories.Animal;
 import model.item.Item;
 import utils.Stringify;
@@ -81,8 +83,7 @@ public class Room {
 		items.add(item);
 	}
 
-	//TODO: gestire exception
-	public Item removeItem(String itemName){
+	public Item removeItem(String itemName) throws ItemNotFoundException {
 		Item item = Search.itemByName(itemName, items);
 		if(items.remove(item)) {
 			return item;
