@@ -2,12 +2,10 @@ package model.labyrinth;
 
 import model.animal.categories.Animal;
 import model.item.Item;
+import utility.Search;
 import utility.Utils;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Room {
 
@@ -79,7 +77,10 @@ public class Room {
 	public void addItem(Item item){
 		items.add(item);
 	};
-	public Item removeItem(Item item){
+
+	//TODO: gestire exception
+	public Item removeItem(String itemName){
+		Item item = Search.itemByName(itemName, items);
 		if(items.remove(item)) {
 			return item;
 		}
@@ -92,7 +93,7 @@ public class Room {
 				(items == null || items.isEmpty() ?  "There are no items.\n" : "Items in the room:\n" + Utils.itemsToString(items)) +
 				(animals == null || animals.isEmpty() ? "There are no animals" : "Animals in the room: " + animals) + "\n" +
 				"List of doors: \n";
-		for (String key : doors.keySet()) {
+		for (Direction key : doors.keySet()) {
 			output += "- " + key.toString() + " door, leading to " + doors.get(key).nextRoom(this).getName() + "\n";
 		}
 		return output;

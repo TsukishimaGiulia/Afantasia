@@ -81,20 +81,19 @@ public class GameController {
 							break;
 						case "get":
 							itemName = splitInput[1];
-							itemOptional = currentRoom.getItems().stream().filter(i -> i.getName().equalsIgnoreCase(itemName)).findFirst();
-							if (itemOptional.isPresent() && player.getBag().addItem(itemOptional.get())) {
-								currentRoom.removeItem(itemOptional.get());
+							Item itemFromRoom = currentRoom.removeItem(itemName);
+							if (itemFromRoom != null && player.addItemToBag(itemFromRoom)) {
 								output = "You have put " + itemName + " into your bag.";
 							} else {
 								output = "There isn't any " + itemName + " in this room.";
+								currentRoom.addItem(itemFromRoom);
 							}
 							break;
 						case "drop":
 							itemName = splitInput[1];
-							itemOptional = player.getBag().getItems().stream().filter(i -> i.getName().equalsIgnoreCase(itemName)).findFirst();
-							if (itemOptional.isPresent()) {
-								player.getBag().removeItem(itemOptional.get());
-								currentRoom.addItem(itemOptional.get());
+							Item itemFromBag = player.removeItemFromBag(itemName);
+							if (itemFromBag!=null) {
+								currentRoom.addItem(itemFromBag);
 								output = "You have dropped " + itemName + ".";
 							} else {
 								output = "There isn't any " + itemName + " in your bag.";
