@@ -17,14 +17,14 @@ public class DropCommand extends ParametrizedCommand {
 
         String output;
         String itemName = command[1];
-        Optional<Item> itemOptional = gc.getPlayer().getBag().getItems().stream().filter(i -> i.getName().equalsIgnoreCase(itemName)).findFirst();
-            if (itemOptional.isPresent()) {
-                gc.getPlayer().getBag().removeItem(itemOptional.get());
-                gc.getCurrentRoom().addItem(itemOptional.get());
-                output = "You have dropped " + itemName + ".";
-            } else {
-                output = "There isn't any " + itemName + " in your bag.";
-            }
+
+        Item itemFromBag = gc.getPlayer().removeItemFromBag(itemName);
+        if (itemFromBag!=null) {
+            gc.getCurrentRoom().addItem(itemFromBag);
+            output = "You have dropped " + itemName + ".";
+        } else {
+            output = "There isn't any " + itemName + " in your bag.";
+        }
 
         return output;
     }

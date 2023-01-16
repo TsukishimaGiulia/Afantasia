@@ -15,17 +15,16 @@ public class GetCommand extends ParametrizedCommand {
 
     @Override
     public String execute() {
-
         String output;
         String itemName = command[1];
-        Optional<Item> itemOptional = gc.getCurrentRoom().getItems().stream().filter(i -> i.getName().equalsIgnoreCase(itemName)).findFirst();
-            if (itemOptional.isPresent() && gc.getPlayer().getBag().addItem(itemOptional.get())) {
-                gc.getCurrentRoom().removeItem(itemOptional.get());
-                output = "You have put " + itemName + " into your bag.";
-            } else {
-                output = "There isn't any " + itemName + " in this room.";
-            }
+        Item itemFromRoom = gc.getCurrentRoom().removeItem(itemName);
 
+        if (itemFromRoom != null && gc.getPlayer().addItemToBag(itemFromRoom)) {
+            output = "You have put " + itemName + " into your bag.";
+        } else {
+            output = "There isn't any " + itemName + " in this room.";
+            gc.getCurrentRoom().addItem(itemFromRoom);
+        }
         return output;
     }
 }
