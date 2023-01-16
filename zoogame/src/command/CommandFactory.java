@@ -8,8 +8,10 @@ import game.GameController;
 
 public class CommandFactory {
 
+    private CommandFactory(){}
+
     public static Command make(String[] command, GameController gc) throws MissingParameterException {
-        Command c = null;
+        Command c;
 
         // go, look, bag, get, drop, help, exit
 
@@ -32,9 +34,11 @@ public class CommandFactory {
             case "help":
                 c = new HelpCommand(gc);
                 break;
-            case "default":
-                c = new UnknownCommand(gc);
+            case "exit":
+                c = new ExitCommand(gc);
                 break;
+            default:
+                c = new UnknownCommand(gc);
         }
         return c;
     }
