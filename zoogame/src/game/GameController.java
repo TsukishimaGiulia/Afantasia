@@ -1,5 +1,7 @@
 package game;
 
+import command.Command;
+import command.CommandFactory;
 import game.console.InputController;
 import model.game.Bag;
 import model.item.Item;
@@ -15,18 +17,51 @@ public class GameController {
 
 	private Player player;
 
+	private Room currentRoom;
+
+	private boolean gameEnded = false;
+
+	private static GameController instance;
+
+	private GameController(){}
+
+	public static GameController getInstance(){
+		if(instance == null){
+			instance = new GameController();
+		}
+		return instance;
+	}
+
+	public Player getPlayer() {
+		return player;
+	}
+
+	public void setPlayer(Player player) {
+		this.player = player;
+	}
+
+	public Room getCurrentRoom() {
+		return currentRoom;
+	}
+
+	public void setCurrentRoom(Room currentRoom) {
+		this.currentRoom = currentRoom;
+	}
+
+	public void setGameEnded(boolean gameEnded) {
+		this.gameEnded = gameEnded;
+	}
+
 	public void runGame() {
 		try {
-				boolean gameEnded = false;
 				String input;
 				int labyrinthDimension = 0;
 				Labyrinth labyrinth;
-				Room currentRoom;
 
 				System.out.println("Please enter your name");
 				System.out.print(">");
 				input = InputController.readString();
-				Player player = new Player(input,100, new Bag());
+				player = new Player(input,100, new Bag());
 				System.out.println("Hello " + player.getName() + "! Welcome to Afantasia, our fantastic world without fantasy!\n" +
 						"In this game, you're lost in a labyrinth and you have to find the exit.\n" +
 						"In your path you will find animals and objects to collect.\n");
@@ -58,70 +93,11 @@ public class GameController {
 				String itemName;
 				Optional<Item> itemOptional;
 				try {
-
-					switch (splitInput[0]) {
-						case "go":
-							Room room = goToNextRoom(currentRoom, splitInput[1]);
-							if (room.equals(currentRoom) || room == null) {
-								output = "The selected room does not exist. You still are in " + currentRoom.getName() + ".";
-							} else {
-								currentRoom = room;
-								output = "You have just stepped into " + currentRoom.description();
-								if (currentRoom.isExit()) {
-									output = "Congratulations, " + player.getName() + ", you've found the exit!";
-									gameEnded = true;
-								}
-							}
-							break;
-						case "look":
-							output = currentRoom.description();
-							break;
-						case "bag":
-							output = player.getBag().toString();
-							break;
-						case "get":
-							itemName = splitInput[1];
-							itemOptional = currentRoom.getItems().stream().filter(i -> i.getName().equalsIgnoreCase(itemName)).findFirst();
-							if (itemOptional.isPresent() && player.getBag().addItem(itemOptional.get())) {
-								currentRoom.removeItem(itemOptional.get());
-								output = "You have put " + itemName + " into your bag.";
-							} else {
-								output = "There isn't any " + itemName + " in this room.";
-							}
-							break;
-						case "drop":
-							itemName = splitInput[1];
-							itemOptional = player.getBag().getItems().stream().filter(i -> i.getName().equalsIgnoreCase(itemName)).findFirst();
-							if (itemOptional.isPresent()) {
-								player.getBag().removeItem(itemOptional.get());
-								currentRoom.addItem(itemOptional.get());
-								output = "You have dropped " + itemName + ".";
-							} else {
-								output = "There isn't any " + itemName + " in your bag.";
-							}
-							break;
-						case "help":
-							output = "- go: lets you move through rooms, specifying the direction (north, south, east, west) as a parameter (ex: go north);\n" +
-									"- look: gives you the description of the room, including items and animals present;\n" +
-									"- bag: gives you the list of items in your bag;\n" +
-									"- get: lets you pick up an item selected as a parameter from the room and put it in your bag (ex: get itemName);\n" +
-									"- drop: lets you drop an item selected as a parameter from your bag and leave it in the current room (ex: drop itemName);\n" +
-									"- exit: ends the game.";
-							break;
-						case "exit":
-							gameEnded = true;
-							output = "Bye, " + player.getName() + ". We hope to see you again! :-) ";
-							break;
-						default:
-							output = "Command not valid, type 'help' to see the command list.";
-							break;
-					}
-				} catch (IndexOutOfBoundsException e) {
-					output = "You must specify a parameter for the command " + input + ".";
+					Command command = CommandFactory.make(splitInput, instance);
+					output = command.execute();
 				} catch (Exception e) {
 					output = e.getMessage();
 				}
-
 				System.out.println(output + "\n");
 			}
 			}catch(Exception e){
@@ -129,7 +105,7 @@ public class GameController {
 			}
 		}
 
-	private Room goToNextRoom(Room currentRoom, String direction){
+	public Room goToNextRoom(Room currentRoom, String direction){
 
 		Door requestedDoor = currentRoom.getDoors().get(Direction.valueOf(direction.toUpperCase()));
 		if(requestedDoor == null) {
