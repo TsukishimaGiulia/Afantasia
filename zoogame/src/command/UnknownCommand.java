@@ -12,6 +12,4 @@ public class UnknownCommand extends Command {
     public String execute(){
         return "Command not found";
     }
-
-
 }

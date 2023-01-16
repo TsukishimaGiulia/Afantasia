@@ -27,5 +27,4 @@ public class GoCommand extends ParametrizedCommand {
         }
         return output;
     }
-
 }

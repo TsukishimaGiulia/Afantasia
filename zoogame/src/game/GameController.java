@@ -90,8 +90,6 @@ public class GameController {
 				System.out.print(">");
 				input = InputController.readString();
 				String[] splitInput = input.toLowerCase().split(" ", 2);
-				String itemName;
-				Optional<Item> itemOptional;
 				try {
 					Command command = CommandFactory.make(splitInput, instance);
 					output = command.execute();
