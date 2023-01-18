@@ -1,6 +1,8 @@
 package command.parametrized;
 
 import command.Command;
+import exception.FullBagException;
+import exception.ItemNotFoundException;
 import exception.MissingParameterException;
 import game.GameController;
 import model.item.Item;
@@ -14,17 +16,15 @@ public class GetCommand extends ParametrizedCommand {
     }
 
     @Override
-    public String execute() {
-        String output;
+    public String execute() throws ItemNotFoundException {
         String itemName = command[1];
         Item itemFromRoom = gc.getCurrentRoom().removeItem(itemName);
-
-        if (itemFromRoom != null && gc.getPlayer().addItemToBag(itemFromRoom)) {
-            output = "You have put " + itemName + " into your bag.";
-        } else {
-            output = "There isn't any " + itemName + " in this room.";
+        try {
+            gc.getPlayer().addItemToBag(itemFromRoom);
+            return "You have put " + itemName + " into your bag.";
+        } catch (FullBagException e) {
             gc.getCurrentRoom().addItem(itemFromRoom);
+            return e.getMessage();
         }
-        return output;
     }
 }

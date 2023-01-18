@@ -1,6 +1,7 @@
 package command.parametrized;
 
 import command.Command;
+import exception.ItemNotFoundException;
 import exception.MissingParameterException;
 import game.GameController;
 import model.item.Item;
@@ -13,19 +14,10 @@ public class DropCommand extends ParametrizedCommand {
         super(gc, command);
     }
     @Override
-    public String execute(){
-
-        String output;
+    public String execute() throws ItemNotFoundException {
         String itemName = command[1];
-
         Item itemFromBag = gc.getPlayer().removeItemFromBag(itemName);
-        if (itemFromBag!=null) {
-            gc.getCurrentRoom().addItem(itemFromBag);
-            output = "You have dropped " + itemName + ".";
-        } else {
-            output = "There isn't any " + itemName + " in your bag.";
-        }
-
-        return output;
+        gc.getCurrentRoom().addItem(itemFromBag);
+        return "You have dropped " + itemName + ".";
     }
 }

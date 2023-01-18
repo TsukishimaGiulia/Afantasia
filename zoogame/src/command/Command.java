@@ -1,5 +1,7 @@
 package command;
 
+import exception.FullBagException;
+import exception.ItemNotFoundException;
 import game.GameController;
 import model.labyrinth.Room;
 
@@ -11,5 +13,5 @@ public abstract class Command {
         this.gc = gc;
     }
 
-    public abstract String execute();
+    public abstract String execute() throws ItemNotFoundException;
 }

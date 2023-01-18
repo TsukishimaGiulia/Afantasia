@@ -10,7 +10,7 @@ public class Search {
 
     private Search(){}
 
-    public static Item itemByName (String itemName, List<Item> items) throws ItemNotFoundException {
+    public static Item itemByName (String itemName, List<Item> items){
         return items.stream()
                 .filter(i -> i.getName().equals(itemName))
                 .findFirst()

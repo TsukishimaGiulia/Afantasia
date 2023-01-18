@@ -88,7 +88,7 @@ public class Room {
 		if(items.remove(item)) {
 			return item;
 		}
-		throw new ItemNotFoundException("Item not found!");
+		throw new ItemNotFoundException(itemName);
 	}
 
 	public String description() {

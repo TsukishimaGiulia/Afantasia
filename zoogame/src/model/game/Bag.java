@@ -15,7 +15,7 @@ public class Bag {
 	private int availableSlots;
 
 	public Bag(){
-		availableSlots = 40;
+		availableSlots = 10;
 		items = new ArrayList<>();
 	}
 
@@ -43,7 +43,7 @@ public class Bag {
 			availableSlots += item.getRequiredSlots();
 			return item;
 		}
-		throw new ItemNotFoundException("Item not found!");
+		throw new ItemNotFoundException(itemName);
 	}
 
 	public String description() {
