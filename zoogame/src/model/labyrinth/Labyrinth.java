@@ -6,7 +6,6 @@ import model.animal.categories.Animal;
 import model.item.Item;
 import bootstrap.Items;
 import utils.DirectionUtility;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;

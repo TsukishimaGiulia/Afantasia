@@ -1,12 +1,10 @@
 package model.labyrinth;
 
-import exception.FullBagException;
 import exception.ItemNotFoundException;
 import model.animal.categories.Animal;
 import model.item.Item;
 import utils.Stringify;
 import utils.Search;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

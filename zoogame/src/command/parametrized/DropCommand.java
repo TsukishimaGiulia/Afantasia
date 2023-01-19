@@ -1,12 +1,9 @@
 package command.parametrized;
 
-import command.Command;
 import exception.ItemNotFoundException;
 import exception.MissingParameterException;
 import game.GameController;
 import model.item.Item;
-
-import java.util.Optional;
 
 public class DropCommand extends ParametrizedCommand {
 

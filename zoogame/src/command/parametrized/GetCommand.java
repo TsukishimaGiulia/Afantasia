@@ -1,13 +1,11 @@
 package command.parametrized;
 
-import command.Command;
+
 import exception.FullBagException;
 import exception.ItemNotFoundException;
 import exception.MissingParameterException;
 import game.GameController;
 import model.item.Item;
-
-import java.util.Optional;
 
 public class GetCommand extends ParametrizedCommand {
 

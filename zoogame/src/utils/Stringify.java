@@ -2,7 +2,6 @@ package utils;
 
 import model.animal.categories.Animal;
 import model.item.Item;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

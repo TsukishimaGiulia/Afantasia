@@ -1,9 +1,6 @@
 package utils;
 
-import exception.FullBagException;
-import exception.ItemNotFoundException;
 import model.item.Item;
-
 import java.util.List;
 
 public class Search {

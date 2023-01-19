@@ -1,8 +1,6 @@
 package command;
 
 import game.GameController;
-import model.labyrinth.Room;
-
 public class LookCommand extends Command {
 
     protected LookCommand(GameController gc) {

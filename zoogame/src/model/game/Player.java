@@ -3,9 +3,7 @@ package model.game;
 import exception.FullBagException;
 import exception.ItemNotFoundException;
 import model.item.Item;
-
 import java.util.List;
-import java.util.Optional;
 
 public class Player {
 

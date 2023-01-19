@@ -4,14 +4,11 @@ import command.Command;
 import command.CommandFactory;
 import game.console.InputController;
 import model.game.Bag;
-import model.item.Item;
 import model.game.Player;
 import model.labyrinth.Direction;
 import model.labyrinth.Door;
 import model.labyrinth.Labyrinth;
 import model.labyrinth.Room;
-
-import java.util.*;
 
 public class GameController {
 
@@ -76,7 +73,6 @@ public class GameController {
 						System.err.println("You must type a number!!!!!"); //TO DO: check why it isn't always printed at the same point
 					}
 				}
-			;
 
 			labyrinth = new Labyrinth(14); //nRooms is constant because we don't have enough animals and items
 			labyrinth.addAnimalsAndItemsToLabyrinth();

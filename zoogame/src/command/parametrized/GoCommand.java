@@ -1,6 +1,5 @@
 package command.parametrized;
 
-import command.Command;
 import exception.MissingParameterException;
 import game.GameController;
 import model.labyrinth.Room;

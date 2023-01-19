@@ -1,6 +1,5 @@
 package command;
 
-import exception.FullBagException;
 import exception.ItemNotFoundException;
 import game.GameController;
 import model.labyrinth.Room;
