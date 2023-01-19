@@ -6,7 +6,7 @@ import model.item.Item;
 import utils.Stringify;
 import utils.Search;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,7 +19,7 @@ public class Room {
 	private boolean exit = false;
 
 	public Room(String name) {
-		this(name, new ArrayList<>(), new ArrayList<>(), new HashMap<>());
+		this(name, new ArrayList<>(), new ArrayList<>(), new EnumMap<>(Direction.class));
 	}
 
 	public Room(String name, Map<Direction, Door> doors) {
