@@ -103,6 +103,9 @@ public class GameController {
 	public Room goToNextRoom(Room currentRoom, String direction){
 		try{
 			Door requestedDoor = currentRoom.getDoors().get(Direction.valueOf(direction.toUpperCase()));
+			if(requestedDoor == null){
+				return currentRoom;
+			}
 			return requestedDoor.nextRoom(currentRoom);
 		}catch(IllegalArgumentException e){
 			return currentRoom;
