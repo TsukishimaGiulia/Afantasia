@@ -89,6 +89,18 @@ public class Room {
 		throw new ItemNotFoundException(itemName);
 	}
 
+	public Room goToNextRoom(String direction){
+		try{
+			Door requestedDoor = this.doors.get(Direction.valueOf(direction.toUpperCase()));
+			if(requestedDoor == null){
+				return this;
+			}
+			return requestedDoor.nextRoom(this);
+		}catch(IllegalArgumentException e){
+			return this;
+		}
+	}
+
 	public String description() {
 		return "Room named " + name + "." +
 				"\nItems in the room:" + Stringify.listOfItems(items) +
@@ -103,4 +115,6 @@ public class Room {
 		}
 		return output;
 	}
+
+
 }

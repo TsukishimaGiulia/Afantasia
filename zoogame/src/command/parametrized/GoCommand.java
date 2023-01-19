@@ -12,7 +12,7 @@ public class GoCommand extends ParametrizedCommand {
 
     @Override
     public String execute(){
-        Room room = gc.goToNextRoom(gc.getCurrentRoom(), command[1]);
+        Room room = gc.getCurrentRoom().goToNextRoom(command[1]);
         if (room.equals(gc.getCurrentRoom())) {
             return "The selected room does not exist. You still are in " + gc.getCurrentRoom().getName() + ".";
         } else {
