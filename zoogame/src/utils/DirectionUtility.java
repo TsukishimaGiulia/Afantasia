@@ -5,6 +5,7 @@ import model.labyrinth.Direction;
 import model.labyrinth.Door;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class DirectionUtility {
 
@@ -14,11 +15,9 @@ public class DirectionUtility {
 
     public static Direction calculateFreeDirection(Map<Direction, Door> doors){
         Random random = new Random();
-        List<Direction> directions = new ArrayList<>();
-        for(Direction d : Direction.values()){
-            directions.add(d);
-        }
-        directions.removeAll(doors.keySet());
+        List<Direction> directions = Arrays.stream(Direction.values())
+                .filter(direction -> !direction.equals(doors.keySet()))
+                .collect(Collectors.toList());
         return directions.get(random.nextInt(directions.size()));
     }
 
