@@ -15,7 +15,7 @@ public class Labyrinth {
     private int nRooms;
     private List<Room> rooms;
 
-    public Labyrinth(int nRooms) throws DirectionNotFoundException {
+    public Labyrinth(int nRooms) {
         this.nRooms = nRooms;
         this.rooms = new ArrayList<>(nRooms);
         generateLabyrinth(nRooms);
@@ -25,7 +25,7 @@ public class Labyrinth {
         return rooms;
     }
 
-    private void generateLabyrinth(int nRooms) throws DirectionNotFoundException {
+    private void generateLabyrinth(int nRooms) {
         Random random = new Random();
         Room room = new Room("Entry room");
         rooms.add(room);
@@ -46,8 +46,12 @@ public class Labyrinth {
                 Door door = new Door(true, r, room1);
                 Direction direction = DirectionUtility.calculateFreeDirection(r.getDoors());
                 r.getDoors().put(direction, door);
-                room1.getDoors().put(DirectionUtility.getOppositeDirection(direction), door);
-                rooms.add(room1);
+                try {
+                    room1.getDoors().put(DirectionUtility.getOppositeDirection(direction), door);
+                    rooms.add(room1);
+                }catch(DirectionNotFoundException e){
+                    System.out.println(e.getMessage());
+                }
             }
         }
         rooms.get(rooms.size() - 1).setExit(true);
