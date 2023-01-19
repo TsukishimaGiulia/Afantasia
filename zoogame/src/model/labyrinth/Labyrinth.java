@@ -26,13 +26,13 @@ public class Labyrinth {
     }
 
     private void generateLabyrinth(int nRooms) throws DirectionNotFoundException {
-
+        Random random = new Random();
         Room room = new Room("Entry room");
         rooms.add(room);
 
         for (int i = 0; i < rooms.size(); i++) {
             Room r = rooms.get(i);
-            int doorsLeft = new Random().nextInt(3) + 1 - r.getDoors().size();
+            int doorsLeft = random.nextInt(3) + 1 - r.getDoors().size();
             Room room1;
 
             if (doorsLeft == 0 && i < nRooms) {

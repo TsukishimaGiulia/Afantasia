@@ -13,12 +13,13 @@ public class DirectionUtility {
     }
 
     public static Direction calculateFreeDirection(Map<Direction, Door> doors){
+        Random random = new Random();
         List<Direction> directions = new ArrayList<>();
         for(Direction d : Direction.values()){
             directions.add(d);
         }
         directions.removeAll(doors.keySet());
-        return directions.get(new Random().nextInt(directions.size()));
+        return directions.get(random.nextInt(directions.size()));
     }
 
     public static Direction getOppositeDirection(Direction direction) throws DirectionNotFoundException {
