@@ -70,7 +70,7 @@ public class GameController {
 					try {
 						labyrinthDimension = Integer.parseInt(input);
 					} catch (NumberFormatException e) {
-						System.err.println("You must type a number!!!!!"); //TO DO: check why it isn't always printed at the same point
+						System.err.println("You must type a number!!!!!");
 					}
 				}
 

@@ -3,7 +3,6 @@ package model.game;
 import exception.FullBagException;
 import exception.ItemNotFoundException;
 import model.item.Item;
-import java.util.List;
 
 public class Player {
 
@@ -43,9 +42,5 @@ public class Player {
 
 	public Item removeItemFromBag(String itemName) throws ItemNotFoundException {
 		return bag.removeItem(itemName);
-	}
-
-	public List<Item> getAllItemsFromBag() {
-		return bag.getItems();
 	}
 }

@@ -80,14 +80,14 @@ public class Labyrinth {
 
         int nItems = nRooms*2;
         for(int i = 1; i <= nItems; i++){
-            randomIndex = random.nextInt(items.getItems().size());
-            Item selectedItem = items.getItems().get(randomIndex);
+            randomIndex = random.nextInt(items.getItemList().size());
+            Item selectedItem = items.getItemList().get(randomIndex);
 
             randomIndex = random.nextInt(nRooms);
             Room selectedRoom = rooms.get(randomIndex);
 
             selectedRoom.getItems().add(selectedItem);
-            items.getItems().remove(selectedItem);
+            items.getItemList().remove(selectedItem);
         }
     }
 

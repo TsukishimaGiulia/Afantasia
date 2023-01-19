@@ -58,7 +58,7 @@ public class Animals {
     public List<Animal> getAllAnimals(){
         initialize();
         Set<Class<? extends Animal>> classes = getAnimalMap().keySet();
-        List<Animal> animals = new ArrayList<Animal>();
+        List<Animal> animals = new ArrayList<>();
         for(Class c : classes){
             animals.addAll(getAnimalMap().get(c));
         }

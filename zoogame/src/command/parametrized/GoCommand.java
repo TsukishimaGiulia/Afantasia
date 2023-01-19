@@ -9,6 +9,7 @@ public class GoCommand extends ParametrizedCommand {
     public GoCommand(GameController gc, String[] command) throws MissingParameterException {
         super(gc, command);
     }
+
     @Override
     public String execute(){
         Room room = gc.goToNextRoom(gc.getCurrentRoom(), command[1]);

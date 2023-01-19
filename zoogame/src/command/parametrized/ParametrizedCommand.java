@@ -5,6 +5,7 @@ import exception.MissingParameterException;
 import game.GameController;
 
 public abstract class ParametrizedCommand extends Command {
+
     protected String[] command;
 
     protected ParametrizedCommand(GameController gc, String[] command) throws MissingParameterException {

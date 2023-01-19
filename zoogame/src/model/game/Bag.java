@@ -33,7 +33,7 @@ public class Bag {
 			availableSlots -= item.getRequiredSlots();
 			return true;
 		}else{
-			throw new FullBagException("Bag is full!");
+			throw new FullBagException();
 		}
 	}
 

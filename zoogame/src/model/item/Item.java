@@ -8,7 +8,7 @@ public abstract class Item {
 	private String description;
 	private int requiredSlots;
 
-	public Item(String name, String description, int requiredSlots) {
+	protected Item(String name, String description, int requiredSlots) {
 		this.name = name;
 		this.description = description;
 		this.requiredSlots = requiredSlots;
