@@ -9,7 +9,7 @@ public abstract class ParametrizedCommand extends Command {
 
     protected ParametrizedCommand(GameController gc, String[] command) throws MissingParameterException {
         super(gc);
-        if(command.length == 1){
+        if(command.length == 1 || command[1].trim().equals("")){
             throw new MissingParameterException("Missing parameter.");
         }
         this.command = command;
