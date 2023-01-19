@@ -17,6 +17,4 @@ public class HelpCommand extends Command {
                 "- drop: lets you drop an item selected as a parameter from your bag and leave it in the current room (ex: drop itemName);\n" +
                 "- exit: ends the game.";
     }
-
-
 }

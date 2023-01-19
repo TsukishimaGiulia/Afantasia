@@ -2,7 +2,6 @@ package command;
 
 import exception.ItemNotFoundException;
 import game.GameController;
-import model.labyrinth.Room;
 
 public abstract class Command {
 

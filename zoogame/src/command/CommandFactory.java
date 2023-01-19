@@ -13,8 +13,6 @@ public class CommandFactory {
     public static Command make(String[] command, GameController gc) throws MissingParameterException {
         Command c;
 
-        // go, look, bag, get, drop, help, exit
-
         switch(command[0]){
             case "go":
                 c = new GoCommand(gc, command);
