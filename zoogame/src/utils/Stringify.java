@@ -13,7 +13,7 @@ public class Stringify {
     }
 
     private static String notEmptyListOfItems(List<Item> items) {
-        String output = "";
+        StringBuilder builder = new StringBuilder();
         Map<String, Integer> itemsOccurrences = new HashMap<>();
 
         items.stream().forEach(i -> {
@@ -27,10 +27,10 @@ public class Stringify {
         });
 
         for (String key : itemsOccurrences.keySet()) {
-            output += "\n- " + key + " x" + itemsOccurrences.get(key) + "";
+            builder.append("\n- " + key + " x" + itemsOccurrences.get(key) + "");
         }
 
-        return output;
+        return builder.toString();
     }
 
     public static String listOfItems(List<Item> items){

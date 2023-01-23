@@ -110,11 +110,11 @@ public class Room {
 	}
 
 	private String mapOfDoorsToString(){
-		String output = "";
+		StringBuilder builder = new StringBuilder();
 		for (Direction key : doors.keySet()) {
-			output += "\n- " + key.getName() + " door, leading to " + doors.get(key).nextRoom(this).getName();
+			builder.append("\n- " + key.getName() + " door, leading to " + doors.get(key).nextRoom(this).getName());
 		}
-		return output;
+		return builder.toString();
 	}
 
 }
