@@ -38,7 +38,7 @@ public class Bag {
 	}
 
 	public Item removeItem(String itemName) throws ItemNotFoundException {
-		Item item = Search.itemByName(itemName,items);
+		Item item = Search.byPredicate(items, i -> i.getName().equals(itemName));
 		if(items.remove(item)) {
 			availableSlots += item.getRequiredSlots();
 			return item;
@@ -47,7 +47,7 @@ public class Bag {
 	}
 
 	public String description() {
-		return "Your bag" +
+		return "Your bag: " +
 				Stringify.listOfItems(items) + "\n" +
 				"Available slots: " + availableSlots + ".";
 	}

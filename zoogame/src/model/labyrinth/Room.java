@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Predicate;
 
 public class Room {
 
@@ -82,7 +83,7 @@ public class Room {
 	}
 
 	public Item removeItem(String itemName) throws ItemNotFoundException {
-		Item item = Search.itemByName(itemName, items);
+		Item item = Search.byPredicate(items, i -> i.getName().equals(itemName));
 		if(items.remove(item)) {
 			return item;
 		}
@@ -115,6 +116,5 @@ public class Room {
 		}
 		return output;
 	}
-
 
 }
