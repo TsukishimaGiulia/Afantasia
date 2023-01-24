@@ -1,38 +1,20 @@
 package model.item;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 import model.game.Player;
 
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
+@Setter
+@Getter
 public abstract class Item {
 
 	private String name;
 	private String description;
+	@Setter(AccessLevel.NONE)
 	private int requiredSlots;
-
-	protected Item(String name, String description, int requiredSlots) {
-		this.name = name;
-		this.description = description;
-		this.requiredSlots = requiredSlots;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public int getRequiredSlots() {
-		return requiredSlots;
-	}
 
 	public abstract String use(Player player);
 

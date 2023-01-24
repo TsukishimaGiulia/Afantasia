@@ -1,7 +1,15 @@
 package model.animal.categories;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.time.LocalDate;
 
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
+@Setter
+@Getter
 public abstract class Animal {
 
     private String name;
@@ -10,63 +18,6 @@ public abstract class Animal {
     private LocalDate dateOfEntry;
     private Double weight;
     private Double height;
-
-    public Animal(String name, String favoriteFood, Integer age, LocalDate dateOfEntry, Double weight, Double height) {
-        this.name = name;
-        this.favoriteFood = favoriteFood;
-        this.age = age;
-        this.dateOfEntry = dateOfEntry;
-        this.weight = weight;
-        this.height = height;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getFavoriteFood() {
-        return favoriteFood;
-    }
-
-    public void setFavoriteFood(String favoriteFood) {
-        this.favoriteFood = favoriteFood;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    public LocalDate getDateOfEntry() {
-        return dateOfEntry;
-    }
-
-    public void setDateOfEntry(LocalDate dateOfEntry) {
-        this.dateOfEntry = dateOfEntry;
-    }
-
-    public Double getWeight() {
-        return weight;
-    }
-
-    public void setWeight(Double weight) {
-        this.weight = weight;
-    }
-
-    public Double getHeight() {
-        return height;
-    }
-
-    public void setHeight(Double height) {
-        this.height = height;
-    }
 
     public String simpleDescription() {
         return this.getClass().getSimpleName() + " " + this.getName();

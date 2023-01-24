@@ -1,6 +1,7 @@
 package bootstrap;
 
 
+import lombok.Getter;
 import model.animal.*;
 import model.animal.categories.Animal;
 
@@ -9,11 +10,8 @@ import java.util.*;
 
 public class Animals {
 
+    @Getter
     private Map<Class<? extends Animal>, List<Animal>> animalMap = new HashMap<>();
-
-    public Map<Class<? extends Animal>, List<Animal>> getAnimalMap() {
-        return animalMap;
-    }
 
     public void initialize(){
         List<Animal> eagles = new ArrayList<>();

@@ -1,23 +1,17 @@
 package bootstrap;
 
+import lombok.Getter;
 import model.item.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Items {
+    @Getter
     private List<Item> itemList = new ArrayList<>();
 
     public Items() {
         initialize();
-    }
-
-    public List<Item> getItemList() {
-        return itemList;
-    }
-
-    public void setItemList(List<Item> itemList) {
-        this.itemList = itemList;
     }
 
     public void initialize(){

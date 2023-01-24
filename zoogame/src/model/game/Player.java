@@ -2,39 +2,22 @@ package model.game;
 
 import exception.FullBagException;
 import exception.ItemNotFoundException;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 import model.item.Item;
-
+@AllArgsConstructor
+@Getter
+@Setter
 public class Player {
 
+
 	private String name;
+
 	private int lifePoints;
+	@Setter(AccessLevel.NONE)
 	private Bag bag;
-
-	public Player(String name, int lifePoints, Bag bag) {
-		this.name = name;
-		this.lifePoints = lifePoints;
-		this.bag = bag;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public int getLifePoints() {
-		return lifePoints;
-	}
-
-	public void setLifePoints(int lifePoints) {
-		this.lifePoints = lifePoints;
-	}
-
-	public Bag getBag() {
-		return bag;
-	}
 
 	public boolean addItemToBag(Item item) throws FullBagException {
 		return bag.addItem(item);

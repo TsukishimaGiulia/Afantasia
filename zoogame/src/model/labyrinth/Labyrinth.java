@@ -2,6 +2,7 @@ package model.labyrinth;
 
 import bootstrap.Animals;
 import exception.DirectionNotFoundException;
+import lombok.Getter;
 import model.animal.categories.Animal;
 import model.item.Item;
 import bootstrap.Items;
@@ -13,16 +14,13 @@ import java.util.Random;
 public class Labyrinth {
 
     private int nRooms;
+    @Getter
     private List<Room> rooms;
 
     public Labyrinth(int nRooms) {
         this.nRooms = nRooms;
         this.rooms = new ArrayList<>(nRooms);
         generateLabyrinth(nRooms);
-    }
-
-    public List<Room> getRooms() {
-        return rooms;
     }
 
     private void generateLabyrinth(int nRooms) {

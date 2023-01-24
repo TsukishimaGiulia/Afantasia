@@ -1,6 +1,9 @@
 package model.labyrinth;
 
 import exception.ItemNotFoundException;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 import model.animal.categories.Animal;
 import model.item.Item;
 import utils.Stringify;
@@ -11,12 +14,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
 
+@Getter
 public class Room {
 
 	private String name;
 	private List<Item> items;
 	private List<Animal> animals;
 	private Map<Direction, Door> doors;
+	@Setter
 	private boolean exit = false;
 
 	public Room(String name) {
@@ -42,41 +47,6 @@ public class Room {
 		this.doors = doors;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public List<Item> getItems() {
-		return items;
-	}
-
-	public List<Animal> getAnimals() {
-		return animals;
-	}
-
-	public void setAnimals(List<Animal> animals) {
-		this.animals = animals;
-	}
-
-	public Map<Direction, Door> getDoors() {
-		return doors;
-	}
-
-	public void setDoors(Map<Direction, Door> doors) {
-		this.doors = doors;
-	}
-
-	public boolean isExit() {
-		return exit;
-	}
-
-	public void setExit(boolean exit) {
-		this.exit = exit;
-	}
 
 	public void addItem(Item item){
 		items.add(item);
@@ -112,7 +82,7 @@ public class Room {
 	private String mapOfDoorsToString(){
 		StringBuilder builder = new StringBuilder();
 		for (Direction key : doors.keySet()) {
-			builder.append("\n- " + key.getName() + " door, leading to " + doors.get(key).nextRoom(this).getName());
+			builder.append("\n- " + key.getName() + " door, leading to " + doors.get(key).nextRoom(this).name);
 		}
 		return builder.toString();
 	}

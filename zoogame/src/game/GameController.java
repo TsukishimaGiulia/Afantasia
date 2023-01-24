@@ -3,13 +3,19 @@ package game;
 import command.Command;
 import command.CommandFactory;
 import game.console.InputController;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
 import model.game.Bag;
 import model.game.Player;
 import model.labyrinth.Labyrinth;
 import model.labyrinth.Room;
 
+@Getter
+@Setter
 public class GameController {
 
+	@Setter(AccessLevel.NONE)
 	private Player player;
 
 	private Room currentRoom;
@@ -25,22 +31,6 @@ public class GameController {
 			instance = new GameController();
 		}
 		return instance;
-	}
-
-	public Player getPlayer() {
-		return player;
-	}
-
-	public Room getCurrentRoom() {
-		return currentRoom;
-	}
-
-	public void setCurrentRoom(Room currentRoom) {
-		this.currentRoom = currentRoom;
-	}
-
-	public void setGameEnded(boolean gameEnded) {
-		this.gameEnded = gameEnded;
 	}
 
 	public void runGame() {
