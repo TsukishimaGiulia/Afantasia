@@ -1,7 +1,6 @@
 package model.labyrinth;
 
 import exception.ItemNotFoundException;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import model.animal.categories.Animal;
@@ -12,7 +11,6 @@ import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Predicate;
 
 @Getter
 public class Room {

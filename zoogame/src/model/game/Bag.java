@@ -2,7 +2,6 @@ package model.game;
 
 import exception.FullBagException;
 import exception.ItemNotFoundException;
-import lombok.Getter;
 import model.item.Item;
 import utils.Stringify;
 import utils.Search;
@@ -13,7 +12,6 @@ import java.util.List;
 public class Bag {
 
 	private List<Item> items;
-
 	private int availableSlots;
 
 	public Bag(){
