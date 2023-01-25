@@ -8,7 +8,7 @@ import model.animal.categories.Animal;
 import java.time.LocalDate;
 import java.util.*;
 
-public class Animals {
+public class AnimalService {
 
     @Getter
     private Map<Class<? extends Animal>, List<Animal>> animalMap = new HashMap<>();

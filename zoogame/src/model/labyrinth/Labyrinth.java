@@ -1,11 +1,11 @@
 package model.labyrinth;
 
-import bootstrap.Animals;
+import bootstrap.AnimalService;
 import exception.DirectionNotFoundException;
 import lombok.Getter;
 import model.animal.categories.Animal;
 import model.item.Item;
-import bootstrap.Items;
+import bootstrap.ItemService;
 import utils.DirectionUtility;
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +56,7 @@ public class Labyrinth {
     }
 
     public void addAnimalsToLabyrinth() {
-        Animals zoo = new Animals();
+        AnimalService zoo = new AnimalService();
         Random random = new Random();
         int randomIndex;
 
@@ -76,7 +76,7 @@ public class Labyrinth {
     }
 
     public void addItemsToLabyrinth(){
-        Items items = new Items();
+        ItemService items = new ItemService();
         Random random = new Random();
         int randomIndex;
 

@@ -6,11 +6,11 @@ import model.item.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Items {
+public class ItemService {
     @Getter
     private List<Item> itemList = new ArrayList<>();
 
-    public Items() {
+    public ItemService() {
         initialize();
     }
 
