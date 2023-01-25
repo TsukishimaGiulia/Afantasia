@@ -27,7 +27,7 @@ public class StringifyUtil {
         });
 
         for (Map.Entry<String, Integer> entry: itemsOccurrences.entrySet()) {
-            builder.append("\n- " + entry.getKey() + " x" + entry.getValue() + "");
+            builder.append("\n- ").append(entry.getKey()).append(" x").append(entry.getValue());
         }
         return builder.toString();
     }

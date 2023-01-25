@@ -82,7 +82,7 @@ public class Room {
 	private String mapOfDoorsToString(){
 		StringBuilder builder = new StringBuilder();
 		for (Map.Entry<Direction,Door> entry : doors.entrySet()) {
-			builder.append("\n- " + entry.getKey().getName() + " door, leading to " + entry.getValue().nextRoom(this).name);
+			builder.append("\n- ").append(entry.getKey().getName()).append(" door, leading to ").append(entry.getValue().nextRoom(this).name);
 		}
 		return builder.toString();
 	}
