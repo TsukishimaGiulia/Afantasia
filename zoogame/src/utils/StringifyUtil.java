@@ -26,10 +26,9 @@ public class StringifyUtil {
             }
         });
 
-        for (String key : itemsOccurrences.keySet()) {
-            builder.append("\n- " + key + " x" + itemsOccurrences.get(key) + "");
+        for (Map.Entry<String, Integer> entry: itemsOccurrences.entrySet()) {
+            builder.append("\n- " + entry.getKey() + " x" + entry.getValue() + "");
         }
-
         return builder.toString();
     }
 
