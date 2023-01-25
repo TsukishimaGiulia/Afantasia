@@ -4,8 +4,6 @@ import exception.FullBagException;
 import exception.ItemNotFoundException;
 import model.item.Item;
 import utils.StringifyUtil;
-import utils.Search;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +28,10 @@ public class Bag {
 	}
 
 	public Item removeItem(String itemName) throws ItemNotFoundException {
-		Item item = Search.byPredicate(items, i -> i.getName().equals(itemName));
+		Item item = items.stream()
+				.filter(i -> i.getName().equals(itemName))
+				.findFirst()
+				.orElse(null);
 		if(items.remove(item)) {
 			availableSlots += item.getRequiredSlots();
 			return item;

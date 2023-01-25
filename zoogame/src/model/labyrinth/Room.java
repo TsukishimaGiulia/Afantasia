@@ -6,7 +6,6 @@ import lombok.Setter;
 import model.animal.categories.Animal;
 import model.item.Item;
 import utils.StringifyUtil;
-import utils.Search;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
@@ -51,7 +50,10 @@ public class Room {
 	}
 
 	public Item removeItem(String itemName) throws ItemNotFoundException {
-		Item item = Search.byPredicate(items, i -> i.getName().equals(itemName));
+		Item item = items.stream()
+				.filter(i -> i.getName().equals(itemName))
+				.findFirst()
+				.orElse(null);
 		if(items.remove(item)) {
 			return item;
 		}
