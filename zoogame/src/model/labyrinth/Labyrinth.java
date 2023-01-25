@@ -6,7 +6,7 @@ import lombok.Getter;
 import model.animal.categories.Animal;
 import model.item.Item;
 import bootstrap.ItemService;
-import utils.DirectionUtility;
+import utils.DirectionUtil;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -42,10 +42,10 @@ public class Labyrinth {
                     break;
                 room1 = new Room("room " + rooms.size());
                 Door door = new Door(true, r, room1);
-                Direction direction = DirectionUtility.calculateFreeDirection(r.getDoors());
+                Direction direction = DirectionUtil.calculateFreeDirection(r.getDoors());
                 r.getDoors().put(direction, door);
                 try {
-                    room1.getDoors().put(DirectionUtility.getOppositeDirection(direction), door);
+                    room1.getDoors().put(DirectionUtil.getOppositeDirection(direction), door);
                     rooms.add(room1);
                 }catch(DirectionNotFoundException e){
                     System.out.println(e.getMessage());

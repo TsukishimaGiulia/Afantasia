@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import model.animal.categories.Animal;
 import model.item.Item;
-import utils.Stringify;
+import utils.StringifyUtil;
 import utils.Search;
 import java.util.ArrayList;
 import java.util.EnumMap;
@@ -72,8 +72,8 @@ public class Room {
 
 	public String description() {
 		return "Room named " + name + "." +
-				"\nItems in the room:" + Stringify.listOfItems(items) +
-				"\nAnimals in the room: " + Stringify.listOfAnimals(animals) +
+				"\nItems in the room:" + StringifyUtil.listOfItems(items) +
+				"\nAnimals in the room: " + StringifyUtil.listOfAnimals(animals) +
 				"\nList of Doors: " + mapOfDoorsToString();
 	}
 

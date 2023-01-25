@@ -3,7 +3,7 @@ package model.game;
 import exception.FullBagException;
 import exception.ItemNotFoundException;
 import model.item.Item;
-import utils.Stringify;
+import utils.StringifyUtil;
 import utils.Search;
 
 import java.util.ArrayList;
@@ -40,7 +40,7 @@ public class Bag {
 
 	public String description() {
 		return "Your bag: " +
-				Stringify.listOfItems(items) + "\n" +
+				StringifyUtil.listOfItems(items) + "\n" +
 				"Available slots: " + availableSlots + ".";
 	}
 }

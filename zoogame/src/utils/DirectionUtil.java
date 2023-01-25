@@ -7,9 +7,9 @@ import model.labyrinth.Door;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class DirectionUtility {
+public class DirectionUtil {
 
-    private DirectionUtility(){
+    private DirectionUtil(){
 
     }
 
