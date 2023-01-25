@@ -17,7 +17,7 @@ public class DirectionUtil {
 
     public static Direction calculateFreeDirection(Map<Direction, Door> doors){
         List<Direction> directions = Arrays.stream(Direction.values())
-                .filter(direction -> !direction.equals(doors.keySet()))
+                .filter(direction -> !doors.containsKey(direction))
                 .collect(Collectors.toList());
         return directions.get(RANDOM.nextInt(directions.size()));
     }
