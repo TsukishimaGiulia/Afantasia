@@ -32,7 +32,7 @@ public class Bag {
 				.filter(i -> i.getName().equals(itemName))
 				.findFirst()
 				.orElse(null);
-		if(items.remove(item)) {
+		if((item != null) && items.remove(item)) {
 			availableSlots += item.getRequiredSlots();
 			return item;
 		}
