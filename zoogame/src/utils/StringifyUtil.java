@@ -42,7 +42,7 @@ public class StringifyUtil {
         return (animals == null || animals.isEmpty() ?
                 "There are no animals" :
                 animals.stream()
-                        .map(a -> a.simpleDescription())
+                        .map(Animal::simpleDescription)
                         .reduce("", (s1,s2)-> s1 + "\n- " + s2));
     }
 }
