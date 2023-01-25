@@ -57,7 +57,7 @@ public class AnimalService {
         initialize();
         Set<Class<? extends Animal>> classes = getAnimalMap().keySet();
         List<Animal> animals = new ArrayList<>();
-        for(Class c : classes){
+        for(Class<? extends Animal> c : classes){
             animals.addAll(getAnimalMap().get(c));
         }
         return animals;
