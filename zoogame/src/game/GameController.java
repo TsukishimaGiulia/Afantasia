@@ -39,7 +39,7 @@ public class GameController {
 		System.out.println("Welcome to Afantasia, our fantastic world without fantasy!\n" +
 				"In this game, you're lost in a labyrinth and you have to find the exit.\n" +
 				"In your path you will find animals and objects to collect.\n");
-		Labyrinth labyrinth = addLabyrinthToGame(chooseLabirinthDimension());
+		addLabyrinthToGame(chooseLabirinthDimension());
 		System.out.println("You are now in the entry room. You can type your commands using the keyboard: write help for a list of possible commands.\n\n" +
 				currentRoom.description() + "\n");
 
