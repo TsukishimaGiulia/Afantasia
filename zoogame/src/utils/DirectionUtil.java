@@ -9,16 +9,17 @@ import java.util.stream.Collectors;
 
 public class DirectionUtil {
 
+    private static final Random RANDOM = new Random();
+
     private DirectionUtil(){
 
     }
 
     public static Direction calculateFreeDirection(Map<Direction, Door> doors){
-        Random random = new Random();
         List<Direction> directions = Arrays.stream(Direction.values())
                 .filter(direction -> !direction.equals(doors.keySet()))
                 .collect(Collectors.toList());
-        return directions.get(random.nextInt(directions.size()));
+        return directions.get(RANDOM.nextInt(directions.size()));
     }
 
     public static Direction getOppositeDirection(Direction direction) throws DirectionNotFoundException {
