@@ -2,14 +2,6 @@ plugins {
     id 'java'
 }
 
-sourceSets {
-    main {
-        java {
-            srcDirs = ["zoogame/src"]
-        }
-    }
-}
-
 repositories {
     mavenCentral()
 }
@@ -25,6 +17,6 @@ test {
 
 jar {
     manifest {
-        attributes('Main-Class': 'main.Main')
+        attributes('Main-Class': 'main.java.zoogame.Main')
     }
 }
